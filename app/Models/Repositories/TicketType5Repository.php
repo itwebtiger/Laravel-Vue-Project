@@ -49,7 +49,7 @@ Mail::raw( $request , function($message) use ($request) {
     $message->cc('manoj.mishra@dowell.com.au');
     $tktno=$request->input('ticket_no');$status=$request->input('sdastatus'); $comments=$request->input('comment'); 
     $message->subject("OMS: New SDA added to Ticket No-$tktno");
-    $message->setBody("New SDA has been added to Ticket No- $tktno, and assigned to you for approval.\n\n STATUS:$status\n\n Comments:$comments" );
+    $message->setBody("New SDA has been added to Ticket No- $tktno, and assigned to you for approval.\n\n STATUS:$status\n\n Comments:$comments\n\n Please access server (http://10.102.108.10/) for further actions\n\nIts an automatically generated email, please do not reply." );
     //$message->setBody( '<html><h1>5% off its awesome</h1><p>Go get it now !</p></html>', 'text/html' );
     //$message->addPart("5% off its awesome\n\nGo get it now!", 'text/plain');
 });
@@ -80,7 +80,7 @@ Mail::raw( $request , function($message) use ($request) {
                         $message->cc('manoj.mishra@dowell.com.au');
                         $tktno=$request->input('ticket_no');$status=$request->input('sdastatus'); $comments=$request->input('comment'); 
                         $message->subject("OMS:SDA changed in Ticket No-$tktno");
-                        $message->setBody("SDA has been changed in Ticket No- $tktno.\n\n Present Status:$status\n\n Comments:$comments" );
+                        $message->setBody("SDA has been changed in Ticket No- $tktno.\n\n Present Status:$status\n\n Comments:$comments\n\nPlease access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply." );
                        
                     });
 

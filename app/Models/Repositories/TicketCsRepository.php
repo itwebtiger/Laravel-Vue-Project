@@ -57,10 +57,10 @@ class TicketCsRepository extends BaseRepository
             $message->cc($request->input('manageduseremail'));
             $tktno=$request->input('ticket_no');
             $tktstatus=$request->input('tktstatus');
-             $comments=$request->input('comment'); 
-             $tkttype=$request->input('tkttype');
-             $allocateduser=$request->input('allocateduseremail');
-             $manageduser=$request->input('manageduseremail');
+            $comments=$request->input('comment'); 
+            $tkttype=$request->input('tkttype');
+            $allocateduser=$request->input('allocateduseremail');
+            $manageduser=$request->input('manageduseremail');
 
             $message->subject("OMS: New ticket created Ticket No-$tktno , Type:$tkttype , Status:$tktstatus");
             $message->setBody("New Ticket has been raised Ticket No: $tktno\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$comments" );
@@ -109,33 +109,22 @@ class TicketCsRepository extends BaseRepository
 
     public function getlastcsticket($request)
     {
-       // $ticketcs->QUOTE_ID = $request->input('QUOTE_ID'); 
         $qi = $request->input('QUOTE_ID'); 
-       // return $this->model->all()->toArray();
-
-
+     
        return $this->model->orderBy('id', 'desc')->first()->toArray();
-      // return $this->model->where('active',1)->where('QUOTE_ID', $qi)->get()->keyBy('id')->toArray();
-
-       // return $this->model->where('QUOTE_ID',25850)->get()->keyBy('id');
-       // return $this->model->where('active',1)->get(['*', DB::raw("'RW' as permission")])->keyBy('id')->toArray();
+    
     }
 
     //---------------------------all done above now new page-------
     public function getByPaginate($request)
     {
-        //$qi = $request->input('QUOTE_ID'); 
-
         $sort = $request->sort;                 $sort = explode('|', $sort);
         $sortBy = $sort[0];                     $sortDirection = $sort[1];
         $perPage = $request->per_page;          $search = $request->filter;
 
         
         $query = $this->model->orderBy($sortBy, $sortDirection) 
-        //->leftjoin('V_V6_QUOTE_ITEM', function($join) {
-         //   $join->on('V_V6_QUOTE_ITEM.QUOTE_ID', '=', 'ticket_cs.QUOTE_ID');
-        //    $join->on('V_V6_QUOTE_ITEM.QUOTE_VERS_STOP', '=', 'ticket_cs.PRICE');
-       // })
+       
         ->where('active',1)
         ->with('ttype')
         ->with('ttype1')
@@ -212,8 +201,7 @@ class TicketCsRepository extends BaseRepository
 
 
         return $query->paginate($perPage);
-       
-       // return $this->model->orderBy('id', 'desc')->first()->toArray();
+      
     }
 
     public function deleteCsTicket($request)
@@ -237,10 +225,8 @@ class TicketCsRepository extends BaseRepository
         if($file){ 
                  $res="4";
                  $res=$file->getClientOriginalName();
-                // $res=$file->all();
                  return $res;
               }
-
     }
     //--------------------
     public function gettype1ticket($request)
@@ -258,7 +244,6 @@ class TicketCsRepository extends BaseRepository
     {   
         $qi = $request->input('ticket_no'); 
        return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype3')->get()->toArray();
-     
     }
     public function gettype4ticket($request)
     {  $qi = $request->input('ticket_no'); 
@@ -268,7 +253,5 @@ class TicketCsRepository extends BaseRepository
     {  $qi = $request->input('ticket_no'); 
        return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype5')->get()->toArray();
     }
-
-
 
 }
