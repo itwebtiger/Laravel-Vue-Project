@@ -222,7 +222,7 @@ export default
                                       type: 'warning',   showCancelButton: true,
                                       confirmButtonColor: '#3085d6',   cancelButtonColor: '#d33',
                                       confirmButtonText: 'Yes',  cancelButtonText: 'cancel',
-                                      confirmButtonClass: 'btn btn-success', cancelButtonClass: 'btn btn-danger',
+                                   
                                       allowOutsideClick: false
                                      }).then(  function() {    me.$store.dispatch('deletetype4', data)
                                                                   .then((response) => {
@@ -248,7 +248,6 @@ export default
                                               type: 'warning',  showCancelButton: true,
                                               confirmButtonColor: '#3085d6',   cancelButtonColor: '#d33',
                                               confirmButtonText: 'Yes',   cancelButtonText: 'cancel',
-                                              confirmButtonClass: 'btn btn-success',  cancelButtonClass: 'btn btn-danger',
                                               allowOutsideClick: false
                                             }).then(  function() {    me.$store.dispatch('deletetype4', data)
                                                                     .then((response) => {console.log(' delete success'); 

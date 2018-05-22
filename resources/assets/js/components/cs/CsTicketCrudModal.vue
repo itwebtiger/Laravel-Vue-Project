@@ -217,9 +217,7 @@
                           this.allstatus=response.data;
                         })
                        .catch((error) => {  console.error('/cs/crud.vue-created getticketstatustable error=', error); });
-                            
-                          // console.log('hehe this.ticketstatustable=',this.ticketstatustable)
-                           // this.collectStatusOptions(this.ticketstatustable);
+                  
 //-----------------------------------------------------------------------------
                  this.$store.dispatch('useraspergroupscascade')//----------------users
                         .then((response) => 
