@@ -63,7 +63,8 @@ class TicketCsRepository extends BaseRepository
             $manageduser=$request->input('manageduseremail');
 
             $message->subject("OMS: New ticket created Ticket No-$tktno , Type:$tkttype , Status:$tktstatus");
-            $message->setBody("New Ticket has been raised Ticket No: $tktno\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$comments" );
+            $message->setBody("New Ticket has been raised Ticket No: $tktno\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$commentsPlease access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
+           
             //$message->setBody( '<html><h1>5% off its awesome</h1><p>Go get it now !</p></html>', 'text/html' );
             //$message->addPart("5% off its awesome\n\nGo get it now!", 'text/plain');
         });
@@ -90,20 +91,22 @@ class TicketCsRepository extends BaseRepository
         $ticketcs->CONTACT_EMAIL = $request->input('CONTACT_EMAIL'); 
         $ticketcs->CONTACT_PHONE = $request->input('CONTACT_PHONE');
     
-        $ticketcs->save();  
-        /*
-        Mail::raw( $request , function($message) use ($request) {
+        $ticketcs->save();
+        Mail::raw($request, function ($message) use ($request) {
             $message->from('OMS@dowell.com.au', 'OMS');
-            $message->to($request->input('approvinguseremail'));
-            $message->cc('manoj.mishra@dowell.com.au');
-            $tktno=$request->input('ticket_no');$status=$request->input('sdastatus'); $comments=$request->input('comment'); 
-            $message->subject("OMS: New SDA added to Ticket No-$tktno");
-            $message->setBody("New SDA has been added to Ticket No- $tktno, and assigned to you for approval.\n\n STATUS:$status\n\n Comments:$comments" );
-            //$message->setBody( '<html><h1>5% off its awesome</h1><p>Go get it now !</p></html>', 'text/html' );
-            //$message->addPart("5% off its awesome\n\nGo get it now!", 'text/plain');
+            $message->to($request->input('allocateduseremail'));
+            $message->cc($request->input('manageduseremail'));
+            $tktno = $request->input('ticket_no');
+            $tktstatus = $request->input('tktstatus');
+            $comments = $request->input('comment');
+            $tkttype = $request->input('tkttype');
+            $allocateduser = $request->input('allocateduseremail');
+            $manageduser = $request->input('manageduseremail');
+
+            $message->subject("OMS: Ticket No-$tktno updated , Type:$tkttype , Status:$tktstatus");
+            $message->setBody("Ticket No: $tktno has been updated\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$commentsPlease access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
+            
         });
-        */
-        
         return $ticketcs;
     }
 

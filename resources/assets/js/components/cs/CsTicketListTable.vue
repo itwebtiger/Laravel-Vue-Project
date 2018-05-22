@@ -152,6 +152,13 @@
             onActions (data) 
             {   console.log('/cs/list-- onActions', data);
                 let payload = { isShow: true,  data: data,  };
+               // if(data.ttype1.length>0 ||data.ttype2a.length>0 ||data.ttype3.length>0||data.ttype4.length>0||data.ttype5.length>0 )
+              // console.log('data.data.type5',data.data.ttype5);
+              // console.log('data.ttype5.length',data.data.ttype5.length);
+                if(data.data.ttype5.length>0 || data.data.ttype4.length>0|| data.data.ttype3.length>0|| data.data.ttype2a.length>0)
+                {  this.$store.dispatch('showErrorNotification', 'Please delete associated subticket first !');
+                   return;
+                }
                 if (data.action === 'Delete')
                 {   let swal = this.$swal;
                     let me = this;
@@ -160,7 +167,6 @@
                           type: 'warning',  showCancelButton: true,
                           confirmButtonColor: '#3085d6',  cancelButtonColor: '#d33',
                           confirmButtonText: 'Yes', cancelButtonText: 'cancel',
-                          confirmButtonClass: 'btn btn-success',  cancelButtonClass: 'btn btn-danger',
                           allowOutsideClick: false
                          }).then(function() 
                          {  me.$store.dispatch('deletecstkt', data.data)
