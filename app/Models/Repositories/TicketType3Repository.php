@@ -109,11 +109,5 @@ class TicketType3Repository extends BaseRepository
         return $testb1;
     }
 
-    public function deleteTicketType3perTicket($request)
-    {   $testb1 =  $this->model->findOrFail($request->input('ticket_no'));
-        $testb1->active = 0;   
-        $testb1->save();   
-        return $testb1;
-    }
 
 }
