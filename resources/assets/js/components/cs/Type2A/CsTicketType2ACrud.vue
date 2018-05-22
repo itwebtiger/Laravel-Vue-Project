@@ -54,13 +54,14 @@
     import input from 'vue-strap/src/Input'
     export default 
     {   computed: 
-           { ...mapState({ showFormType2A: state => state.cstickettype.showFormType2A,//---------add---6
-                           type2Data: state=> state.cstickettype.csticketType2Adata,  
+           { ...mapState({  showFormType2A: state => state.cstickettype.showFormType2A,//---------add---6
+                            type2Data: state=> state.cstickettype.csticketType2Adata,  
                             selectedTicket: state => state.cstkt.selectedTicket,
                             cascadeUserOptions: state => state.cstkt.useraspgroup.groupNodes,
-                        ticketcnstatustable: state => state.csticketcnstatus.ticketcnstatustable,
-                        selectedTicketttype1: state => state.cstkt.selectedTicket.ttype2a,
-                        csType1perTicket: state => state.cstickettype.csType2AperTicket,
+                            ticketcnstatustable: state => state.csticketcnstatus.ticketcnstatustable,
+                            selectedTicketttype1: state => state.cstkt.selectedTicket.ttype2a,
+                            csType1perTicket: state => state.cstickettype.csType2AperTicket,
+                            allusers: state => state.user.userTable,
                         }), 
              csticket() {  console.log('/2a/- this.selectedTicketttype1=',this.selectedTicketttype1); 
                         if (this.csType1perTicket )  
@@ -78,7 +79,7 @@
                         else return null; 
                      },  
             },
-       data ()  {  return {  title: '',  formData: {     id: '', comment: '', 
+       data ()  {  return {  title: '',  formData: {     id: '', comment: '', approvinguseremail:'',sdastatus:'',
                             price: '', description: '', ticket_no: '', status_id: '' } ,statusOptions: [] ,
                             cascade_group_user:[]   }   },
        created() {  console.log('cs/cstickettype1crud.vue-- Component created.')  
@@ -108,30 +109,39 @@
                                 }
                             },
 
-
                OnSave() //---------------on save while adding and edit----coming from action=Add in  onClickNew() in statelistview
-                { console.log('2Acrud.vue-----OnSave_click this.formdata',this.formData);
-                  let payload = {  isShow: false,  data: this.formData, };
-                  if (this.type2Data.action === 'Add')// add new state
+                { 
+                        var allu=this.allusers; var uu=this.formData.user;
+                        var allstatus=this.ticketcnstatustable; var ss=this.formData.status_id;
+                        var sdastatus='';
+                        for (let status in allstatus) 
+                              { if (allstatus[status].id==ss)  sdastatus=allstatus[status].STATUS;}
+                        var approvinguseremail='';
+                        Object.keys(allu).forEach(function(key) 
+                          {  if(allu[key].id==uu.id)
+                             approvinguseremail=allu[key].email
+                           });
+                        this.formData.sdastatus=sdastatus;
+                        this.formData.approvinguseremail=approvinguseremail;
+                    
+                    console.log('2Acrud.vue-----OnSave_click this.formdata',this.formData);
+                   // return;
+                    let payload = {  isShow: false,  data: this.formData, };
+                    if (this.type2Data.action === 'Add')// add new state
                      {   console.log('add--formdata----',this.formData);
                           if (  this.isEmpty(this.formData.price) )
                             { this.$store.dispatch('showErrorNotification', 'Please provie price !');   return;  }
                             if (  this.formData.status_id === "" )
                             {  this.$store.dispatch('showErrorNotification', 'Please select status_id '); return;  }
-                           // if (  this.isEmpty(this.formData.group) || this.isEmpty(this.formData.user)  )
-                           // {      this.$store.dispatch('showErrorNotification', 'Please select user !');
-                           //     return;
-                           // }
-                         
-                         this.$store.dispatch('setCsTicketType2AShowModal', payload); //---to disable popup
-                       this.$store.dispatch('cstype2Aadd', this.formData)
-                        .then((response) => {   console.log(' save success'); 
+                               this.$store.dispatch('setCsTicketType2AShowModal', payload); //---to disable popup
+                               this.$store.dispatch('cstype2Aadd', this.formData)
+                                          .then((response) => {   console.log(' save success'); 
                                                 this.$events.fire('refreshcsticket');
                                             }).catch((error) => {console.log('save error');});
                      } 
                   else if (this.type2Data.action === 'Edit')// update
-                   { this.$store.dispatch('setCsTicketType2AShowModal', payload);  
-                   console.log(' payload=',payload); 
+                   {  this.$store.dispatch('setCsTicketType2AShowModal', payload);  
+                      console.log(' payload=',payload); 
                       this.$store.dispatch('updatetype2A', this.formData)
                         .then((response) => { console.log(' edit success');  this.$events.fire('refreshcsticket');})     
                         .catch((error) => {});
@@ -143,7 +153,7 @@
                            this.$store.dispatch('setCsTicketType2AShowModal', payload);
                            this.resetFormData();
                         },
-               resetFormData() {  this.formData = { id: '', price: '',  user:{id:'', name:''}, group :{id:'', name:''}, status_id: '', 
+               resetFormData() {  this.formData = { id: '', approvinguseremail:'',sdastatus:'',price: '',  user:{id:'', name:''}, group :{id:'', name:''}, status_id: '', 
                                   comment: '', reason: ''  };this.cascade_group_user=[]; 
                                 }
 

@@ -31,12 +31,12 @@ export default
        {  ...mapGetters({    }),
           ...mapState({   user: state => state.authUser,
                           selectedOrder: state => state.tab.selectedOrder,
-                          //csTicketdata: state => state.csticket.csTicketdata,
+                         
                           csTicketperQuote: state => state.csticket.csTicketperQuote,
                       }),
           order()   {  if (this.selectedOrder)  return this.selectedOrder;  else return null;    }, 
           csticket()   {  if (this.csTicketperQuote)  return this.csTicketperQuote;  else return null;    }, 
-         //  csticket()   {  if (this.csTicketdata)  return this.csTicketdata;  else return null;    }, 
+       
 
        },
 
@@ -44,15 +44,12 @@ export default
     data () {  return {    }   },
     components: {    },
     updated() {    console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss); 
-                   //console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss[0].QUOTE_ID); 
-                  //console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata);
-                 // console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata[1].QUOTE_ID);
-                 //console.log('Booking/OrderList/CsTicektInfo.vue-csticketdata1.',csticketdata1); 
+                  
               },
     methods: 
           { onClickNew() 
               { console.log('Booking/OrderList/CsTicektInfo.vue-onClickNew');
-               // this.$store.dispatch('getLastTicket');
+             
                 let formData = {   ticket_no: '',ticket_type_id: '',QUOTE_ID: '',ORDER_ID: '',
                                    location_id: '',
                                    name: '',  title: '',  id: ''

@@ -252,7 +252,6 @@ export default
                                       type: 'warning',   showCancelButton: true,
                                       confirmButtonColor: '#3085d6',   cancelButtonColor: '#d33',
                                       confirmButtonText: 'Yes',  cancelButtonText: 'cancel',
-                                      confirmButtonClass: 'btn btn-success', cancelButtonClass: 'btn btn-danger',
                                       allowOutsideClick: false
                                      }).then(  function() {    me.$store.dispatch('deletetype5', data)
                                                                   .then((response) => {

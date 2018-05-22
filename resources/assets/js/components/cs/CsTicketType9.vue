@@ -45,36 +45,26 @@ export default
 {   computed: 
        {  ...mapGetters({    }),
           ...mapState({   user: state => state.authUser,
-                         // selectedOrder: state => state.tab.selectedOrder,
                           selectedOrder: state => state.cstkt.selectedTicket.v6items,
-                          //csTicketdata: state => state.csticket.csTicketdata,
                           csTicketperQuote: state => state.csticket.csTicketperQuote,
                       }),
           order()   {  if (this.selectedOrder)  return this.selectedOrder;  else return null;    }, 
           csticket()   {  if (this.selectedOrder)  return this.selectedOrder;  else return null;    }, 
-         //  csticket()   {  if (this.csTicketdata)  return this.csTicketdata;  else return null;    }, 
-
+       
        },
 
     created() {   },
     data () {  return {    }   },
     components: {    },
-    updated() {    //console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss); 
-                   //console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss[0].QUOTE_ID); 
-                  //console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata);
-                 // console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata[1].QUOTE_ID);
-                 //console.log('Booking/OrderList/CsTicektInfo.vue-csticketdata1.',csticketdata1); 
+    updated() {   
               },
     methods: 
           { onClickNew() 
-              { console.log('Booking/OrderList/CsTicektInfo.vue-onClickNew');
-               // this.$store.dispatch('getLastTicket');
-                let formData = {   ticket_no: '',ticket_type_id: '',QUOTE_ID: '',ORDER_ID: '',
-                                   location_id: '',
-                                   name: '',  title: '',  id: ''
+              {  let formData = {   ticket_no: '',ticket_type_id: '',QUOTE_ID: '',ORDER_ID: '',
+                                   location_id: '',  name: '',  title: '',  id: ''
                                };
                 let payload = { isShow: true, data: {action: 'Add', data: formData} };
-                this.$store.dispatch('setCsTicketShowModal', payload)  //----triggers this in store--with empty data and opens new popup for adding
+                this.$store.dispatch('setCsTicketShowModal', payload)  
               },
           }
 }
