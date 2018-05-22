@@ -162,8 +162,8 @@
                             },
                 OnSave() //---------------on save while adding and edit----coming from action=Add in  onClickNew() in statelistview
                     {       
-                        var allu=this.allusers; var uu=this.formData.user;
-                        var allstatus=this.ticketcnstatustable; var ss=this.formData.status_id;
+                                var allu=this.allusers; var uu=this.formData.user;
+                                var allstatus=this.ticketcnstatustable; var ss=this.formData.status_id;
                                 var sdastatus='';
                                 for (let status in allstatus) 
                                     { if (allstatus[status].id==ss)

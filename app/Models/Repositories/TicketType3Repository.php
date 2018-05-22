@@ -27,14 +27,14 @@ class TicketType3Repository extends BaseRepository
         $tickettype1->bb = $request->input('user.id'); //managed user id
         $tickettype1->cc = $request->input('group.id');   //managed user group
         if($request->input('builderorcustomer')) $tickettype1->builderorcustomer = $request->input('builderorcustomer');
-       if($request->input('factory')) $tickettype1->factory = $request->input('factory'); 
-       if($request->input('service')) $tickettype1->service = $request->input('service'); 
-       if($request->input('customerservice')) $tickettype1->customerservice = $request->input('customerservice'); 
-       if($request->input('sales')) $tickettype1->sales = $request->input('sales'); 
+        if($request->input('factory')) $tickettype1->factory = $request->input('factory'); 
+        if($request->input('service')) $tickettype1->service = $request->input('service'); 
+        if($request->input('customerservice')) $tickettype1->customerservice = $request->input('customerservice'); 
+        if($request->input('sales')) $tickettype1->sales = $request->input('sales'); 
         if($request->input('estimating')) $tickettype1->estimating = $request->input('estimating'); 
-       if($request->input('transport')) $tickettype1->transport = $request->input('transport'); 
+        if($request->input('transport')) $tickettype1->transport = $request->input('transport'); 
         if($request->input('supplier')) $tickettype1->supplier = $request->input('supplier'); 
-       if($request->input('other')) $tickettype1->other = $request->input('other'); 
+        if($request->input('other')) $tickettype1->other = $request->input('other'); 
 
         $tickettype1->issues = $request->input('issues'); 
         $tickettype1->officeuse = $request->input('officeuse'); 
@@ -42,8 +42,7 @@ class TicketType3Repository extends BaseRepository
         $tickettype1->ddd = $request->input('allitems2'); //all items
         $tickettype1->eee = $request->input('allerrors2');
         $tickettype1->fff = $request->input('allnotes2');
-          
-      
+
         $tickettype1->save();
         return $tickettype1;
     }

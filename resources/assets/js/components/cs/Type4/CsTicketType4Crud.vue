@@ -62,6 +62,7 @@
                             selectedTicketttype1: state => state.cstkt.selectedTicket.ttype4,
                             csType1perTicket: state => state.cstickettype.csType4perTicket,
                             v6itemstable: state => state.cstkt.selectedTicket.v6items,
+                            allusers: state => state.user.userTable,
                         }), 
                     csticket() 
                         {  console.log('/t4/- this.selectedTicketttype4=',this.selectedTicketttype1); 
@@ -86,7 +87,8 @@
                         
             },
        data ()  {  return {  title: '',  formData: {     id: '', comment: '', item1_id : '', item2_id : '', allitems : '',
-                            price: '', description: '', ticket_no: '', status_id: '', finds: [], find: '' , allitems2: ''} ,statusOptions: [] ,
+                            price: '', description: '', ticket_no: '', status_id: '', finds: [], find: '' , allitems2: '',
+                            approvinguseremail:'',} ,statusOptions: [] ,
                             cascade_group_user:[] , finds: []   }   },
        created() {  console.log('cs/cstickettype1crud.vue-- Component created.')      
                     this.collectCnStatusOptions(this.ticketcnstatustable); //to collect cn status options for dropdown
@@ -142,30 +144,29 @@
                                 }
                             },
                 OnSave() //---------------on save while adding and edit----coming from action=Add in  onClickNew() in statelistview
-                    {   console.log('add--formdata.finds----',this.formData.finds);
-                           // var allitems1= ` 1.${this.formData.item1_id}`; 
-                           var allitems1 = ''; //var allerrors1 = ''; var allnotes1= '';
+                    {   
+                                var allu=this.allusers; var uu=this.formData.user;
+                                var allstatus=this.ticketcnstatustable; var ss=this.formData.status_id;
+                                var sdastatus='';
+                                for (let status in allstatus) 
+                                    { if (allstatus[status].id==ss)  sdastatus=allstatus[status].STATUS;}
+                              
+                                var approvinguseremail='';
+                                Object.keys(allu).forEach(function(key) 
+                                {  if(allu[key].id==uu.id)
+                                    approvinguseremail=allu[key].email
+                                });
+                                this.formData.sdastatus=sdastatus;
+                                this.formData.approvinguseremail=approvinguseremail;
+                      
+                           var allitems1 = ''; 
                               for (let i=0;i<= this.formData.finds.length-1; i++) 
                                 {   if (this.formData.finds[i].label != '')
                                      allitems1= allitems1+`||${i}.`+ this.formData.finds[i].label; 
-                                    // else allitems1= allitems1+`||${i}.undefined`; 
-                                   
                                 }
-                          
-                          
-                     /*     
-                          
-                          var allitems1 = '';
-                              if(this.formData.item1_id != '') allitems1= `#${this.formData.item1_id}#`;
-                               
-                              for (let i=0;i<= this.formData.finds.length-1; i++) 
-                                {  if (this.formData.finds[i].label != '')
-                                     allitems1= allitems1+`||`+ this.formData.finds[i].label;                          
-                                }
-                          console.log('allitems1=',allitems1);
-                    */
                           this.formData.allitems2=allitems1;
-                          console.log('3crud.vue-----OnSave_click this.formdata',this.formData);
+                          console.log('just after save-formData=',this.formData);
+                          //return;
                         let payload = {  isShow: false,  data: this.formData, };
                         if (this.type4Data.action === 'Add')// add new state
                         {   console.log('add--formdata----',this.formData);
@@ -190,7 +191,7 @@
                            this.resetFormData();
                         },
                resetFormData() {  this.formData = { id: '', allitems: '', price: '',  user:{id:'', name:''}, group :{id:'', name:''}, status_id: '', 
-                                  comment: '', reason: '' , item1_id: '', item2_id: '', find: '', finds : [], allitems2: ''  };this.cascade_group_user=[]; 
+                                  approvinguseremail:'',comment: '', reason: '' , item1_id: '', item2_id: '', find: '', finds : [], allitems2: ''  };this.cascade_group_user=[]; 
                                 }
            }, //actions finish
            watch: {  type4Data() 
