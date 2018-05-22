@@ -245,26 +245,22 @@ export default
                     }
               }, //onclickEdit finish
               onClickPdf() 
-              {       var img = new Image();
-                      img.src = imgurl;  var cstkt=this.csticket[0];
-                      console.log('this.cstickt[0]=',cstkt);
-                     
-                      var doc = new jsPDF();
-                         img.onload = function()
-                         {
-                           doc.addImage(img,  'png', 5, 5, 40, 10);
-                        doc.setFontSize(6);  
-                         doc.text("Dowell Windows Pty Ltd.", 10, 20);
+              {   var img = new Image();
+                  img.src = imgurl;  var cstkt=this.csticket[0];
+                  console.log('this.cstickt[0]=',cstkt);
+                  var doc = new jsPDF();
+                   img.onload = function()
+                         {  doc.addImage(img,  'png', 5, 5, 40, 10);
+                            doc.setFontSize(6);  
+                            doc.text("Dowell Windows Pty Ltd.", 10, 20);
                             doc.text("ABN 78 004 069 523", 10, 22);
-                     
-                        doc.setFontSize(20); 
-                           doc.text(80, 10, "CREDIT NOTE");
-
-                           doc.setFontSize(15); doc.text(90, 30, cstkt.comment);
+                            doc.setFontSize(20); 
+                            doc.text(80, 10, "CREDIT NOTE");
+                            doc.setFontSize(15); doc.text(90, 30, cstkt.comment);
                             doc.text(30, 20, 'Ticket Number'); doc.text(60, 20, cstkt.ticket_no);
                             doc.text(30, 30, 'Approving User'); doc.text(60, 30, cstkt.auserid.name);
                             doc.text(30, 40, 'Status');  doc.text(60, 40, cstkt.tstatus.STATUS);
-                             doc.text(30, 50, 'Comment'); doc.text(60, 50, cstkt.comment);
+                            doc.text(30, 50, 'Comment'); doc.text(60, 50, cstkt.comment);
                              //-------------------------------
                            doc.save('Test.pdf');
                           };
@@ -302,8 +298,7 @@ export default
                                                 function (dismiss) {       }
                                              );
                                   return;
-                                
-                                   
+      
                             }
                        } else if(this.csType1perTicket && this.csType1perTicket[0].ttype3.length > 0 && this.csType1perTicket[0].ticket_no == this.selectedTicket.ticket_no ) 
                                 {   let data=this.csticket[0];
@@ -327,13 +322,9 @@ export default
                                                                   }, 
                                                       function (dismiss) {       }
                                                     );
-                                     
-                                   
                                      console.log('refresh done--after delete2');
                                      return;
-                                  
-                               // this.$store.dispatch('setCsTicketType2AShowModal', payload) 
-                             }
+                              }
                          else 
                               { this.$store.dispatch('showErrorNotification', 'nothing to delete !');
                                 return;

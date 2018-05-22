@@ -96,6 +96,7 @@
                             v6itemstable: state => state.cstkt.selectedTicket.v6items,
                             terrortypes: state => state.cstkt.selectedTicket.terrortype,
                             ticketerrortypetable: state => state.csticketerror.ticketerrortypetable,
+                            allusers: state => state.user.userTable,
                         }), 
                         csticket() {  console.log('/t3/- this.selectedTicketttype3=',this.selectedTicketttype1); 
                         if (this.csType1perTicket )  
@@ -114,7 +115,7 @@
                      },  
                     
             },
-       data ()  {  return {  title: '',  formData: {     id: '', comment: '',finds: '',allitems: '', allerrors2:'', allerrors:'',
+       data ()  {  return {  title: '',  formData: {     id: '',approvinguseremail:'',sdastatus:'', comment: '',finds: '',allitems: '', allerrors2:'', allerrors:'',
                             price: '', description: '', ticket_no: '', status_id: '' } ,statusOptions: [] ,
                             cascade_group_user:[]   }   },
        created() {  console.log('cs/cstickettype1crud.vue-- Component created.')      
@@ -176,7 +177,24 @@
                                 }
                             },
                     OnSave() //---------------on save while adding and edit----coming from action=Add in  onClickNew() in statelistview
-                    {   console.log('3crud.vue-----OnSave_click this.formdata',this.formData);
+                    {   
+                        
+                         var allu=this.allusers; var uu=this.formData.user;
+                         var allstatus=this.ticketcnstatustable; var ss=this.formData.status_id;
+                         var sdastatus='';
+                         for (let status in allstatus) 
+                              { if (allstatus[status].id==ss)  sdastatus=allstatus[status].STATUS;}
+                         var approvinguseremail='';
+                         Object.keys(allu).forEach(function(key) 
+                          {  if(allu[key].id==uu.id)
+                             approvinguseremail=allu[key].email
+                           });
+                         this.formData.sdastatus=sdastatus;
+                         this.formData.approvinguseremail=approvinguseremail;
+                        
+                        
+                        
+                        console.log('3crud.vue-----OnSave_click this.formdata',this.formData);
                         var allitems1 = ''; var allerrors1 = ''; var allnotes1= '';
                               for (let i=0;i<= this.formData.finds.length-1; i++) 
                                 {   if (this.formData.finds[i].label != '')
@@ -201,11 +219,6 @@
                         let payload = {  isShow: false,  data: this.formData, };
                         if (this.type3Data.action === 'Add')// add new state
                         {   console.log('add--formdata----',this.formData);
-                              //if (  this.isEmpty(this.formData.price) )
-                              //  { this.$store.dispatch('showErrorNotification', 'Please provie price !');   return;  }
-                               // if (  this.formData.status_id === "" )
-                               // {  this.$store.dispatch('showErrorNotification', 'Please select status_id '); return;  }
-                        
                             this.$store.dispatch('setCsTicketType3ShowModal', payload); //---to disable popup
                             this.$store.dispatch('cstype3add', this.formData)
                             .then((response) => {   console.log(' save success'); 
@@ -227,7 +240,7 @@
                            this.resetFormData();
                         },
                resetFormData() {  this.formData = { id: '', price: '',  user:{id:'', name:''}, group :{id:'', name:''}, status_id: '', 
-                                  comment: '', reason: ''  , finds: [], allitems: '', allerrors2:'', allerrors:'' };this.cascade_group_user=[]; 
+                                  comment: '', reason: '' ,approvinguseremail:'',sdastatus:'', finds: [], allitems: '', allerrors2:'', allerrors:'' };this.cascade_group_user=[]; 
                                 }
            }, //actions finish
            watch: {  type3Data() 

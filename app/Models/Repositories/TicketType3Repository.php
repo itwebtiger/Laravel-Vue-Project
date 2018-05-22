@@ -6,6 +6,8 @@ use App\Models\Entities\ResourceType;
 use App\Models\Entities\tickettype3;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use SimpleSoftwareIO\SMS\Facades\SMS;
 
 class TicketType3Repository extends BaseRepository
 {
@@ -44,6 +46,16 @@ class TicketType3Repository extends BaseRepository
         $tickettype1->fff = $request->input('allnotes2');
 
         $tickettype1->save();
+        Mail::raw($request, function ($message) use ($request) {
+            $message->from('OMS@dowell.com.au', 'OMS');
+            $message->to($request->input('approvinguseremail'));
+            $message->cc('manoj.mishra@dowell.com.au');
+            $tktno = $request->input('ticket_no');
+            $status = $request->input('sdastatus');
+            $comments = $request->input('comment');
+            $message->subject("OMS: New Rectification Report added to Ticket No-$tktno");
+            $message->setBody("New Rectification Report has been added to Ticket No- $tktno, and assigned to you for approval.\n\n STATUS:$status\n\n Comments:$comments\n\n Please access server (http://10.102.108.10/) for further actions\n\nIts an automatically generated email, please do not reply.");
+        });
         return $tickettype1;
     }
 
@@ -74,7 +86,19 @@ class TicketType3Repository extends BaseRepository
      $ttt->eee = $request->input('allerrors2');
      $ttt->fff = $request->input('allnotes2');
 
-       $ttt->save();  return $ttt;
+       $ttt->save();
+        Mail::raw($request, function ($message) use ($request) {
+            $message->from('OMS@dowell.com.au', 'OMS');
+            $message->to($request->input('approvinguseremail'));
+            $message->cc('manoj.mishra@dowell.com.au');
+            $tktno = $request->input('ticket_no');
+            $status = $request->input('sdastatus');
+            $comments = $request->input('comment');
+            $message->subject("OMS:Rectification Report changed in Ticket No-$tktno");
+            $message->setBody("Rectification Report has been changed in Ticket No- $tktno.\n\n Present Status:$status\n\n Comments:$comments\n\nPlease access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
+
+        });
+       return $ttt;
     }
 
 
