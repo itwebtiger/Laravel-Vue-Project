@@ -7,7 +7,7 @@ export default
 
    state: 
     {   showcstPopup:false, showcstEditPopup:false,  csticketActivityData:null, csticketinbooking:null,
-        selectedTicket: null,selectedTicketType:null,useraspgroup:null,
+           selectedTicket: null, selectedTicketType: null, useraspgroup: null, selectedTicketTypeId:null,
        //till above add is working
         csTicketdata: null , csTicketperQuote : null, csTicketlast: null,//this is for refresh
         //---it[state], gets value from mutations[REFRESH_CSTICKET_TABLE]---then gives it to getter[allcsTicketdata]
@@ -56,6 +56,8 @@ export default
             console.log('/store/cs-tcket.js--types.SET_SELECTED_TICKET state=', state);
             state.selectedTicket = payload.selectedTicket;
             state.selectedTicketType = payload.selectedTicketType;
+            state.selectedTicketTypeId = payload.selectedTicket.ticket_type_id;
+            console.log('/store/cs-tcket.js--types.SET_SELECTED_TICKET selectedTicketTypeId=', payload.selectedTicket.ticket_type_id);
         },
         [types.SET_USER_AS_PER_GROUP] (state, payload) 
         {   console.log('/store/cs-tcket.js--types.SET_SELECTED_TICKET payload=', payload.useraspgroup);

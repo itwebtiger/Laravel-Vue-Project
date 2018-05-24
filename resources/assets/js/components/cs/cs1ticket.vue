@@ -27,22 +27,22 @@
                           <ticket-type1></ticket-type1>
                           <ticket-type1crud></ticket-type1crud>
                     </div>
-                    <div class="col-md-6" v-if="selectedTicketType == 'Credit Note'">
+                    <div class="col-md-6" v-if="selectedTicketTypeId == 2">
                         <ticket-type2A></ticket-type2A>  
                         <ticket-type2Acrud></ticket-type2Acrud>
                     </div>
                     <div class="col-md-6" v-if="selectedTicketType == 'TYPE2B'">
                     <ticket-type2B></ticket-type2B>
                     </div>
-                    <div class="col-md-6" v-if="selectedTicketType == 'Rectification Report'">
+                    <div class="col-md-6" v-if="selectedTicketTypeId == 3 || selectedTicketTypeId == 4 || selectedTicketTypeId == 7">
                     <ticket-type3></ticket-type3>
                     <ticket-type3crud></ticket-type3crud>
                     </div>
-                      <div class="col-md-6" v-if="selectedTicketType == 'Pickup Docket'">
+                      <div class="col-md-6" v-if="selectedTicketTypeId == 5 || selectedTicketTypeId == 8">
                     <ticket-type4></ticket-type4>
                     <ticket-type4crud></ticket-type4crud>
                     </div>
-                      <div class="col-md-6" v-if="selectedTicketType == 'SDA'">
+                      <div class="col-md-6" v-if="selectedTicketTypeId == 6 || selectedTicketTypeId == 9">
                     <ticket-type5></ticket-type5>
                      <ticket-type5crud></ticket-type5crud>
                     </div>
@@ -105,12 +105,15 @@
                      ...mapState({ user: state => state.authUser, 
                                    selectedTicket: state => state.cstkt.selectedTicket,
                                    selectedTicketType: state => state.cstkt.selectedTicketType,
+                                   selectedTicketTypeId: state => state.cstkt.selectedTicketTypeId,
                      
                                 }),
                   },
-        created() {  console.log('/cs/cs1ticket -vue Component created.');  
+        created() {   
                    // this.$store.dispatch('getticketstatustable')
                   },
+        updated(){ //console.log('/cs/cs1ticket -selectedTicket.ticket_type_id=',this.selectedTicket[0].ticket_type_id); 
+                 },
         components: { 'csticket-list-search': CsTicketSearch, 
                       'csticket-crud-modal': CsTicketCrudModal,
                       'csticket-list-table': CsTicketListTable,
