@@ -14,8 +14,7 @@
               <table class="table table-hover table-striped table-responsive table-bordered table-condensed">
                 <thead>
                   <tr> <th>Ticket No</th><th>Date Time </th> <th>Description</th> <th>Comments</th><th>Status </th></tr>
-
-               
+          
                 </thead>
                 <tbody>
                 </tbody>
