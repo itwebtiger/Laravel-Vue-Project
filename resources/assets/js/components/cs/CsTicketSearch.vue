@@ -155,7 +155,7 @@
                                             dateRange: ['',''],dateRangeUpdate: ['',''], 
 
                                             ticket_no:'',ORDER_ID:'',QUOTE_ID:'',ticketStatus:'',
-                                    ticketType:'',createdby:'',updatedby:'',assigneduser:'',orderLocation:'',
+                                    ticketType:'',createdby:'',updatedby:'',assigneduser:'',manageduser:'',orderLocation:'',
                                        },
                         locationOptions: [], statusOptions: [],typeOptions: [],usersOptions:[],
                     }
