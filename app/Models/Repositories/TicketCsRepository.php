@@ -63,7 +63,7 @@ class TicketCsRepository extends BaseRepository
             $manageduser=$request->input('manageduseremail');
 
             $message->subject("OMS: New ticket created Ticket No-$tktno , Type:$tkttype , Status:$tktstatus");
-            $message->setBody("New Ticket has been raised Ticket No: $tktno\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$comments Please access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
+            $message->setBody("New Ticket has been raised Ticket No: $tktno\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$comments \n\nPlease access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
            
             //$message->setBody( '<html><h1>5% off its awesome</h1><p>Go get it now !</p></html>', 'text/html' );
             //$message->addPart("5% off its awesome\n\nGo get it now!", 'text/plain');
@@ -104,7 +104,7 @@ class TicketCsRepository extends BaseRepository
             $manageduser = $request->input('manageduseremail');
 
             $message->subject("OMS: Ticket No-$tktno updated , Type:$tkttype , Status:$tktstatus");
-            $message->setBody("Ticket No: $tktno has been updated\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$comments Please access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
+            $message->setBody("Ticket No: $tktno has been updated\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$comments \n\nPlease access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
             
         });
         return $ticketcs;

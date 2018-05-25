@@ -328,7 +328,6 @@ updatetype: ({dispatch}, formData) =>
                     .catch(error => {    reject(error); });
                     });
             },
-
             //-----------add---get working--delete for type2a
             deletetype2A: ({dispatch}, formData) => 
             {   return new Promise((resolve, reject) => 
@@ -533,7 +532,7 @@ cstype5add: ({dispatch}, formData) =>
 addtype5Success: ({commit, dispatch}, body) => 
 {   console.log('csticket-type.js---addtype5Success body=', body);
     commit({   type: types.ADD_TICKET_TYPE5_SUCCESS, state: body.state   });
-    dispatch('showSuccessNotification', 'Pickup Docket has been added.');   
+    dispatch('showSuccessNotification', 'SDA has been added.');   
     dispatch('gettickettype5table',body.gett1);
 
 },
