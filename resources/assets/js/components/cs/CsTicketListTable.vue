@@ -163,7 +163,7 @@
                 {   let swal = this.$swal;
                     let me = this;
                     this.$swal(
-                        { title: 'Are you sure?', text: 'You will not be able to recover this cstkt!',
+                        { title: 'Are you sure?', text: 'You will not be able to recover this Ticket!',
                           type: 'warning',  showCancelButton: true,
                           confirmButtonColor: '#3085d6',  cancelButtonColor: '#d33',
                           confirmButtonText: 'Yes', cancelButtonText: 'cancel',

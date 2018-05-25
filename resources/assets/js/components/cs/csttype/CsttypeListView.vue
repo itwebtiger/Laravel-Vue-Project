@@ -48,8 +48,7 @@
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Yes',
                                 cancelButtonText: 'cancel',
-                                confirmButtonClass: 'btn btn-success',
-                                cancelButtonClass: 'btn btn-danger',
+                              
                                 allowOutsideClick: false
                              }).then(function() 
                              {  me.$store.dispatch('deletetype', data.data)
