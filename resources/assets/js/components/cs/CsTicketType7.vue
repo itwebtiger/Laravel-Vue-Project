@@ -44,10 +44,7 @@ export default
     data () {  return {    }   },
     components: {    },
     updated() {    console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss); 
-                   //console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss[0].QUOTE_ID); 
-                  //console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata);
-                 // console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata[1].QUOTE_ID);
-                 //console.log('Booking/OrderList/CsTicektInfo.vue-csticketdata1.',csticketdata1); 
+                   
               },
     methods: 
           { onClickNew() 

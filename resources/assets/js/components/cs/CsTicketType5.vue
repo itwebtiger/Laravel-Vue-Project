@@ -3,7 +3,7 @@
     <div class="app-row">
         <div class="panel panel-primary">
             <div class="panel-heading">
-              <a class="accordion-toggle" data-toggle="collapse"  href="#csticketinfoo"> Ticket No: {{ selectedTicket1 ? selectedTicket1.ticket_no  : ''  }} [ SDA ] </a>
+              <a class="accordion-toggle" data-toggle="collapse"  href="#csticketinfoo"> Ticket No: {{ selectedTicket1 ? selectedTicket1.ticket_no  : ''  }} [ {{selectedTicketType ? selectedTicketType : '' }} ] </a>
               <span class="pull-right"> <button class="btn btn-info btn-xs" @click.prevent="onClickPdf">SAVE PDF</button>
                                         <button class="btn btn-success btn-sm" @click.prevent="onClickNew">NEW</button> 
                                         <button class="btn btn-warning btn-sm" @click.prevent="onClickEdit">EDIT</button>
@@ -70,6 +70,7 @@ export default
                         csType1perTicket: state => state.cstickettype.csType5perTicket,
                         selectedTicket: state => state.cstkt.selectedTicket,
                          v6itemstable: state => state.cstkt.selectedTicket.v6items,
+                          selectedTicketType: state => state.cstkt.selectedTicketType,
                       }),
           selectedTicket1(){  //console.log('/2a/- this.selectedTicket=',this.selectedTicket);
                               return this.selectedTicket; 
@@ -179,12 +180,12 @@ export default
                      else{
                           console.log('this.selectedTicketttype1.length>0',this.selectedTicketttype1);
                           if(this.csType1perTicket) console.log('csType1perTicket=',this.csType1perTicket);
-                          this.$store.dispatch('showErrorNotification', 'Pickup Docket is already added to this Ticket !');
+                          this.$store.dispatch('showErrorNotification', 'SDA is already added to this Ticket !');
                           return;
                      }
                 } else if (this.csType1perTicket && this.csType1perTicket[0].ttype5.length > 0 && this.csType1perTicket[0].ticket_no == this.selectedTicket.ticket_no )  
                      {  console.log('inside 2nd-this.csttype5perTicket',this.csType1perTicket);
-                        this.$store.dispatch('showErrorNotification', 'Pickup Docket is already added to this Ticket !');
+                        this.$store.dispatch('showErrorNotification', 'SDA is already added to this Ticket !');
                         return;
                      }
                 else {this.$store.dispatch('setCsTicketType5ShowModal', payload)  //----triggers this in store--with empty data and opens new popup for adding
@@ -202,7 +203,7 @@ export default
                   else if (this.csType1perTicket && this.csType1perTicket[0].ttype5.length > 0 && this.csType1perTicket[0].ticket_no == this.selectedTicket.ticket_no ) 
                     {   this.$store.dispatch('setCsTicketType5ShowModal', payload)    }
                   else 
-                    { this.$store.dispatch('showErrorNotification', 'Please add Pickup Docket to this Ticket !');
+                    { this.$store.dispatch('showErrorNotification', 'Please add SDA to this Ticket !');
                       return;
                     }
               }, //onclickEdit finish
@@ -247,8 +248,7 @@ export default
                             console.log('delete 1st- payload=',payload );
                             let swal = this.$swal;  let me = this;
                             this.$swal({
-                                      title: 'Are you sure?',
-                                      text: 'You will not be able to recover this SDA!',
+                                      title: 'Are you sure?', text: 'You will not be able to recover this SDA!',
                                       type: 'warning',   showCancelButton: true,
                                       confirmButtonColor: '#3085d6',   cancelButtonColor: '#d33',
                                       confirmButtonText: 'Yes',  cancelButtonText: 'cancel',
@@ -277,7 +277,6 @@ export default
                                               type: 'warning',  showCancelButton: true,
                                               confirmButtonColor: '#3085d6',   cancelButtonColor: '#d33',
                                               confirmButtonText: 'Yes',   cancelButtonText: 'cancel',
-                                              confirmButtonClass: 'btn btn-success',  cancelButtonClass: 'btn btn-danger',
                                               allowOutsideClick: false
                                             }).then(  function() {    me.$store.dispatch('deletetype5', data)
                                                                     .then((response) => {console.log(' delete success'); 

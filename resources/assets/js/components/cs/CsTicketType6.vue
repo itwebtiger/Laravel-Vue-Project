@@ -3,7 +3,7 @@
     <div class="app-row">
         <div class="panel panel-primary">
             <div class="panel-heading">
-              <a class="accordion-toggle" data-toggle="collapse"  href="#csticketinfoo">TYPE6:Missing Product- Short Delivery Advice(SDA) </a>
+              <a class="accordion-toggle" data-toggle="collapse"  href="#csticketinfoo">Ticket No: {{ selectedTicket1 ? selectedTicket1.ticket_no  : ''  }} [ {{selectedTicketType ? selectedTicketType : '' }} ]</a>
               <span class="pull-right"> <button class="btn btn-success btn-sm" @click.prevent="onClickNew">NEW</button> </span>
             </div>
             <div id="csticketinfoo" class="panel-collapse collapse in table-responsive">
@@ -33,6 +33,7 @@ export default
                           selectedOrder: state => state.tab.selectedOrder,
                           //csTicketdata: state => state.csticket.csTicketdata,
                           csTicketperQuote: state => state.csticket.csTicketperQuote,
+                           selectedTicketType: state => state.cstkt.selectedTicketType,
                       }),
           order()   {  if (this.selectedOrder)  return this.selectedOrder;  else return null;    }, 
           csticket()   {  if (this.csTicketperQuote)  return this.csTicketperQuote;  else return null;    }, 
@@ -44,10 +45,7 @@ export default
     data () {  return {    }   },
     components: {    },
     updated() {    console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss); 
-                   //console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss[0].QUOTE_ID); 
-                  //console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata);
-                 // console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata[1].QUOTE_ID);
-                 //console.log('Booking/OrderList/CsTicektInfo.vue-csticketdata1.',csticketdata1); 
+                
               },
     methods: 
           { onClickNew() 
