@@ -97,6 +97,7 @@
                             terrortypes: state => state.cstkt.selectedTicket.terrortype,
                             ticketerrortypetable: state => state.csticketerror.ticketerrortypetable,
                             allusers: state => state.user.userTable,
+                            selectedTicketType: state => state.cstkt.selectedTicketType,
                         }), 
                         csticket() {  console.log('/t3/- this.selectedTicketttype3=',this.selectedTicketttype1); 
                         if (this.csType1perTicket )  
@@ -246,13 +247,15 @@
            watch: {  type3Data() 
                       {  console.log('3crud/type3Data changed =', this.type3Data);
                          if (this.type3Data && this.type3Data.action === 'Add')  //this opens a form
-                            {   this.resetFormData();   this.title = 'Add new Rectification Report';  
+                            {   this.resetFormData();  this.title=`Add ${this.selectedTicketType}`; 
                                 console.log('cs/3crud.vue--+++form open -just before save is pressed');
                                 this.formData.ticket_no = this.selectedTicket.ticket_no;
                                 console.log('cs/3crud.vue--ticket_no', this.selectedTicket.ticket_no);
                             }
                          else if (this.type3Data && this.type3Data.action === 'Edit')
-                           {   this.resetFormData();  this.title = 'Editing Rectification Report';
+                           {   this.resetFormData();  
+                                this.title=`Edit ${this.selectedTicketType}`;
+                               //this.title = 'Editing Rectification Report';
                                console.log('cs/cstickettype1crud.vue--ticket_no', this.csticket);
                                this.formData.id = this.csticket[0].id;
                              

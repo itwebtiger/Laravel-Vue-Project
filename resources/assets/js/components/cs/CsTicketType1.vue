@@ -102,10 +102,7 @@ export default
     data () {  return {    }   },
     components: {'csticket-type1-actions': PermissionCustomActions, },
     updated() {   console.log('cs/cstickettype1.vue-in updated-.this.selectedorder', this.selectedTicketttype1); 
-                   //console.log('Booking/OrderList/CsTicektInfo.vue-updated.this.selectedorder', this.selectedOrder.cs_ticketss[0].QUOTE_ID); 
-                  //console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata);
-                 // console.log('Booking/OrderList/CsTicektInfo.vue-csTicketdata.', this.csTicketdata[1].QUOTE_ID);
-                 //console.log('Booking/OrderList/CsTicektInfo.vue-csticketdata1.',csticketdata1); 
+                  
               },
     methods: 
           { onClickNew() 
@@ -152,23 +149,7 @@ export default
           },
 
           watch: 
-          {   /* csType1perTicket(newVal, oldVal) //this function name is defined in computed and its value taken from store
-                {   console.log('/OL/type1--++inside watch');
-                    console.log('/OL/type1--+++++this.csType1perTicket newVal=', newVal);
-                    console.log('/OL/type1--+++this.csType1perTicket  oldVal=', oldVal);
-                    console.log('/OL/type1--++++this.csType1perTicket =', this.csType1perTicket);
-                    console.log('/OL/type1.vue--selectedTicketttype1 =', this.selectedTicketttype1);
-                    if (this.this.csType1perTicket )
-                        {  // this.resetFormData();  this.title = 'Add New Ticket';  
-
-                          //  console.log('/OL/CsticketCrud.vue--+++ticket no2 =', this.csTicketlast);
-                         
-                        
-                        }
-            //csticketActivityData  is defined in store file and imported here
-                },
-*/
-
+          {   
 
 
           }

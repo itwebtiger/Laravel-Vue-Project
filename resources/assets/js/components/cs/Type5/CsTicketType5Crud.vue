@@ -77,6 +77,7 @@
                             v6itemstable: state => state.cstkt.selectedTicket.v6items,
                             terrortypes: state => state.cstkt.selectedTicket.terrortype,
                             allusers: state => state.user.userTable,
+                             selectedTicketType: state => state.cstkt.selectedTicketType,
                         }), 
                     csticket() 
                         {  console.log('/t5/- this.selectedTicketttype4=',this.selectedTicketttype1); 
@@ -213,11 +214,11 @@
                             console.log('status changed=',oldstatus,sdastatus);
                             this.formData.statuschanged=1;
                             this.$store.dispatch('setCsTicketType5ShowModal', payload);  
-                         console.log('Type5-sda edit formData=',this.formData);
-                          console.log(' payload=',payload); 
-                          this.$store.dispatch('updatetype5', this.formData)
-                          .then((response) => { console.log(' edit success');  this.$events.fire('refreshcsticket');})     
-                          .catch((error) => {});
+                            console.log('Type5-sda edit formData=',this.formData);
+                            console.log(' payload=',payload); 
+                            this.$store.dispatch('updatetype5', this.formData)
+                                       .then((response) => { console.log(' edit success');  this.$events.fire('refreshcsticket');})     
+                                       .catch((error) => {});
                         }
                       else  {     }// error
                     },
@@ -233,13 +234,13 @@
            watch: {  type5Data() 
                       {  console.log('4crud/type5Data changed =', this.type5Data);
                          if (this.type5Data && this.type5Data.action === 'Add')  //this opens a form
-                            {   this.resetFormData();   this.title = 'Add new SDA';  
+                            {   this.resetFormData();   this.title=`Add ${this.selectedTicketType}`; 
                                 console.log('cs/4crud.vue--+++form open -just before save is pressed');
                                 this.formData.ticket_no = this.selectedTicket.ticket_no;
                                 console.log('cs/4crud.vue--ticket_no', this.selectedTicket.ticket_no);
                             }
                          else if (this.type5Data && this.type5Data.action === 'Edit')
-                           {    this.resetFormData();  this.title = 'Editing SDA';
+                           {    this.resetFormData();  this.title=`Edit ${this.selectedTicketType}`;
                                 console.log('cs/cstickettype1crud.vue--ticket_no', this.csticket);
                                 this.formData.id = this.csticket[0].id;
                                 this.formData.comment = this.csticket[0].comment;

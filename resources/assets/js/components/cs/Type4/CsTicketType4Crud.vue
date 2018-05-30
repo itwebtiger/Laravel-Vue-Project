@@ -63,6 +63,7 @@
                             csType1perTicket: state => state.cstickettype.csType4perTicket,
                             v6itemstable: state => state.cstkt.selectedTicket.v6items,
                             allusers: state => state.user.userTable,
+                             selectedTicketType: state => state.cstkt.selectedTicketType,
                         }), 
                     csticket() 
                         {  console.log('/t4/- this.selectedTicketttype4=',this.selectedTicketttype1); 
@@ -197,13 +198,13 @@
            watch: {  type4Data() 
                       {  console.log('4crud/type4Data changed =', this.type4Data);
                          if (this.type4Data && this.type4Data.action === 'Add')  //this opens a form
-                            {   this.resetFormData();   this.title = 'Add new Pickup Docket';  
+                            {   this.resetFormData();      this.title=`Add ${this.selectedTicketType}`;
                                 console.log('cs/4crud.vue--+++form open -just before save is pressed');
                                 this.formData.ticket_no = this.selectedTicket.ticket_no;
                                 console.log('cs/4crud.vue--ticket_no', this.selectedTicket.ticket_no);
                             }
                          else if (this.type4Data && this.type4Data.action === 'Edit')
-                           {   this.resetFormData();  this.title = 'Editing Pickup Docket';
+                           {   this.resetFormData();   this.title=`Edit ${this.selectedTicketType}`;
                                console.log('cs/cstickettype1crud.vue--ticket_no', this.csticket);
                                this.formData.id = this.csticket[0].id;
                              
