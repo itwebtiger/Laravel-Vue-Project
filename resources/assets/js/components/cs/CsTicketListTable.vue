@@ -155,12 +155,14 @@
                // if(data.ttype1.length>0 ||data.ttype2a.length>0 ||data.ttype3.length>0||data.ttype4.length>0||data.ttype5.length>0 )
               // console.log('data.data.type5',data.data.ttype5);
               // console.log('data.ttype5.length',data.data.ttype5.length);
-                if(data.data.ttype5.length>0 || data.data.ttype4.length>0|| data.data.ttype3.length>0|| data.data.ttype2a.length>0)
-                {  this.$store.dispatch('showErrorNotification', 'Please delete associated subticket first !');
-                   return;
-                }
+
                 if (data.action === 'Delete')
-                {   let swal = this.$swal;
+                {     if(data.data.ttype5.length>0 || data.data.ttype4.length>0|| data.data.ttype3.length>0|| data.data.ttype2a.length>0)
+                        {  this.$store.dispatch('showErrorNotification', 'Please delete associated subticket first !');
+                        return;
+                        }
+
+                    let swal = this.$swal;
                     let me = this;
                     this.$swal(
                         { title: 'Are you sure?', text: 'You will not be able to recover this Ticket!',
