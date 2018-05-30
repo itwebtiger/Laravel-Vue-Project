@@ -3,7 +3,7 @@
     <div class="app-row">
         <div class="panel panel-primary">
             <div class="panel-heading">
-              <a class="accordion-toggle" data-toggle="collapse"  href="#csticketinfoo"> Ticket No: {{ selectedTicket1 ? selectedTicket1.ticket_no  : ''  }} [ Credit Note ] </a>
+              <a class="accordion-toggle" data-toggle="collapse"  href="#csticketinfoo"> Ticket No: {{ selectedTicket1 ? selectedTicket1.ticket_no  : ''  }} [ {{selectedTicketType ? selectedTicketType : '' }} ] </a>
               <span class="pull-right"> <button class="btn btn-info btn-xs" @click.prevent="onClickPdf">SAVE PDF</button>
                                         <button class="btn btn-success btn-sm" @click.prevent="onClickNew">NEW</button> 
                                         <button class="btn btn-warning btn-sm" @click.prevent="onClickEdit">EDIT</button>
@@ -38,7 +38,6 @@
 
                 </td>
 
-                
                 </tbody>
               </table>
             </div>          
@@ -64,6 +63,7 @@ export default
                         selectedTicketttype1: state => state.cstkt.selectedTicket.ttype2a,
                         csType1perTicket: state => state.cstickettype.csType2AperTicket,
                         selectedTicket: state => state.cstkt.selectedTicket,
+                        selectedTicketType: state => state.cstkt.selectedTicketType,
                       }),
           selectedTicket1(){  console.log('/2a/- this.selectedTicket=',this.selectedTicket);
                               return this.selectedTicket; 

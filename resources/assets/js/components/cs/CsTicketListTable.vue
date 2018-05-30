@@ -32,9 +32,6 @@
                   @vuetable:pagination-data="onPaginationData"
                   @vuetable:radiobox-toggled="onRadioChecked"
         ></vuetable>
-
-
-
         <div class="vuetable-pagination">
             <vuetable-pagination-info ref="permissionpaginationInfo"
                                       info-class="pagination-info"
@@ -73,10 +70,7 @@
                                this.$store.dispatch('getticketerrortypetable');
                                this.$store.dispatch('getuserlist');
                               //  this.$store.dispatch('getticketstatustable');
-
-                      
-
-        },
+                  },
         data () 
            { return {   paginationPath: '',
                         search: '',
@@ -93,13 +87,11 @@
                                 {  title: 'CONTACT', name: 'CONTACT_PERSON',     },
                                // {  title: 'Comments', name: 'comment',   },
                                 {  title: 'AllocatedUser', name: 'auserid.name',sortField: 'user_id',     },
-                                 {  title: 'ManagedUser', name: 'buserid.name',sortField: 'user_id',     },
+                                {  title: 'ManagedUser', name: 'buserid.name',sortField: 'user_id',     },
                                 {  title: 'Created_by', name: 'created_by.name',sortField: 'user_id',     },
                                 {  title: 'Updated_by', name: 'updated_by.name',sortField: 'user_id',},
                                 {  title: 'Updated_At', name: 'updated_at',sortField: 'updated_at',     },
-                             //   {  title: 'Created_At', name: 'created_at',sortField: 'created_at',     },
                                 
-                                 
                               { name: '__component:permission-custom-actions', title: 'Actions',  titleClass: 'text-center', dataClass: 'text-center'  }
                            ],
                         css: {  table: {   tableClass: 'table table-bordered table-striped table-hover',
