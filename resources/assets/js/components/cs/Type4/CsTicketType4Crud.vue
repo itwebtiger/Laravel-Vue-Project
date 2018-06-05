@@ -121,14 +121,16 @@
                         let options = [];
                       //  for (let status in statuses) 
                         for (let i=0;i< statuses.length; i++) 
-                         { var ss=statuses[i];
-                             options.push({value: ss.QTE_POS, label: ss.FRA_CODE});  
+                         {  var ss=statuses[i]; var fra=`${ss.QTE_POS}-${ss.FRA_CODE}`;
+                             //options.push({value: ss.QTE_POS, label: ss.FRA_CODE});  
+                            options.push({value: ss.QTE_POS, label: fra});
                          }
                            this.itemOptions = options;
                             console.log('Type4Crud--- ItemOptions=',this.itemOptions);
                      },
                 onChangeStatus(val) { console.log('Type4Crud-onStatusChange val=',val);    },
-                onChangeItems(val, selectedData) { 
+                onChangeItems(val, selectedData) 
+                                   { 
                                       console.log('Type4Cruds=-onItemsChange val=',val); 
                                       console.log('Type4Cruds=-onItemsChange selecteddata=',selectedData); 
                                       this.formData.allitems = this.formData.allitems+"."+val ; 

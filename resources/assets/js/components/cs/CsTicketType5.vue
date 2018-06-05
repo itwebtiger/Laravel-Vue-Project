@@ -215,21 +215,22 @@ export default
                       var doc = new jsPDF();
                          img.onload = function()
                          {
-                           doc.addImage(img,  'png', 5, 5, 40, 10);
-                        doc.setFontSize(6);  
-                         doc.text("Dowell Windows Pty Ltd.", 10, 20);
+                            doc.addImage(img,  'png', 5, 5, 40, 10);
+                            doc.setFontSize(6);  
+                            doc.text("Dowell Windows Pty Ltd.", 10, 20);
                             doc.text("ABN 78 004 069 523", 10, 22);
-                     
-                        doc.setFontSize(20); 
-                           doc.text(80, 10, "CREDIT NOTE");
-
-                           doc.setFontSize(15); doc.text(90, 30, cstkt.comment);
-                            doc.text(30, 20, 'Ticket Number'); doc.text(60, 20, cstkt.ticket_no);
-                            doc.text(30, 30, 'Approving User'); doc.text(60, 30, cstkt.auserid.name);
-                        //    doc.text(30, 40, 'Status');  doc.text(60, 40, cstkt.tstatus.STATUS);
-                             doc.text(30, 50, 'Comment'); doc.text(60, 50, cstkt.comment);
+                            doc.setFontSize(20); 
+                            doc.text(80, 10, "SHORT DELIVERY ADVICE");
+                            
+                           doc.setFontSize(15); 
+                           doc.text(50, 40, 'SDA No.'); doc.text(110, 40, String(cstkt.id));
+                           doc.text(50, 50, 'Ticket Number'); if(cstkt.ticket_no) doc.text(110, 50, cstkt.ticket_no);
+                           doc.text(50, 60, 'Approving User');  if(cstkt.auserid.name) doc.text(110, 60, cstkt.auserid.name);
+                          // doc.text(50, 70, 'Amount'); doc.text(110, 70, cstkt.amount);
+                           doc.text(50, 80, 'Status');  if(cstkt.tstatus.STATUS) doc.text(110, 80, cstkt.tstatus.STATUS);
+                           doc.text(50, 90, 'Comments'); if(cstkt.comment) doc.text(110, 90, cstkt.comment);
                              //-------------------------------
-                           doc.save('Test.pdf');
+                           doc.save('SDA.pdf');
                           };
               },
              onClickDel()

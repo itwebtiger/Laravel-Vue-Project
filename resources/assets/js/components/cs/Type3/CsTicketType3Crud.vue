@@ -158,8 +158,9 @@
                      {  console.log('Type5Crud--- Items=',statuses);
                         let options = [];
                         for (let i=0;i< statuses.length; i++) 
-                         { var ss=statuses[i];
-                             options.push({value: ss.QTE_POS, label: ss.FRA_CODE});  
+                         { 
+                             var ss=statuses[i]; var fra=`${ss.QTE_POS}-${ss.FRA_CODE}`;
+                             options.push({value: ss.QTE_POS, label: fra}); 
                          }
                            this.itemOptions = options;
                             console.log('Type5Crud--- ItemOptions=',this.itemOptions);
