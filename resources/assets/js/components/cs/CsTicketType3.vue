@@ -3,7 +3,7 @@
     <div class="app-row">
         <div class="panel panel-primary">
             <div class="panel-heading">
-              <a class="accordion-toggle" data-toggle="collapse"  href="#csticketinfoo"> Ticket No: {{ selectedTicket1 ? selectedTicket1.ticket_no  : ''  }} [ Rectification Report ] </a>
+              <a class="accordion-toggle" data-toggle="collapse"  href="#csticketinfoo"> Ticket No: {{ selectedTicket1 ? selectedTicket1.ticket_no  : ''  }} [ {{selectedTicketType ? selectedTicketType : '' }} ] </a>
               <span class="pull-right"> <button class="btn btn-info btn-xs" @click.prevent="onClickPdf">SAVE PDF</button>
                                         <button class="btn btn-success btn-sm" @click.prevent="onClickNew">NEW</button> 
                                         <button class="btn btn-warning btn-sm" @click.prevent="onClickEdit">EDIT</button>
@@ -14,7 +14,7 @@
               <table class="table table-hover table-striped table-responsive table-bordered table-condensed">
                
                 <tbody>
-                      <tr><td>Credit Note ID</td><td colspan="2"> {{csticket[0] ? csticket[0].id: '' }}</td></tr>
+                      <tr><td>ID</td><td colspan="2"> {{csticket[0] ? csticket[0].id: '' }}</td></tr>
                       
                        <tr v-for="find in csticket.allitems ">
                         <td>ITEM/ERROR/NOTES</td><td colspan="2"> ITEM:[{{ find ? find.items : '' }}] ERROR:[{{ find ? find.errors : '' }}] NOTES:[{{ find ? find.notes : '' }}]</td>
@@ -69,6 +69,7 @@ export default
                         selectedTicketttype1: state => state.cstkt.selectedTicket.ttype3,
                         csType1perTicket: state => state.cstickettype.csType3perTicket,
                         selectedTicket: state => state.cstkt.selectedTicket,
+                         selectedTicketType: state => state.cstkt.selectedTicketType,
                       }),
           selectedTicket1(){  //console.log('/2a/- this.selectedTicket=',this.selectedTicket);
                               return this.selectedTicket; 
@@ -216,12 +217,12 @@ export default
                      else{
                           console.log('this.selectedTicketttype1.length>0',this.selectedTicketttype1);
                           if(this.csType1perTicket) console.log('csType1perTicket=',this.csType1perTicket);
-                          this.$store.dispatch('showErrorNotification', 'Rectification Report is already added to this Ticket !');
+                          this.$store.dispatch('showErrorNotification', `${this.selectedTicketType} is already added`);
                           return;
                      }
                 } else if (this.csType1perTicket && this.csType1perTicket[0].ttype3.length > 0 && this.csType1perTicket[0].ticket_no == this.selectedTicket.ticket_no )  
                      {  console.log('inside 2nd-this.csType3perTicket',this.csType1perTicket);
-                        this.$store.dispatch('showErrorNotification', 'Rectification Report is already added to this Ticket !');
+                        this.$store.dispatch('showErrorNotification',  `${this.selectedTicketType} is already added`,);
                         return;
                      }
                 else {this.$store.dispatch('setCsTicketType3ShowModal', payload)  //----triggers this in store--with empty data and opens new popup for adding
@@ -240,7 +241,7 @@ export default
                   else if (this.csType1perTicket && this.csType1perTicket[0].ttype3.length > 0 && this.csType1perTicket[0].ticket_no == this.selectedTicket.ticket_no ) 
                     {   this.$store.dispatch('setCsTicketType3ShowModal', payload)    }
                   else 
-                    { this.$store.dispatch('showErrorNotification', 'Please add Rectification Report to this Ticket !');
+                    { this.$store.dispatch('showErrorNotification',  `Please add ${this.selectedTicketType}`,);
                       return;
                     }
               }, //onclickEdit finish
@@ -255,14 +256,17 @@ export default
                             doc.text("Dowell Windows Pty Ltd.", 10, 20);
                             doc.text("ABN 78 004 069 523", 10, 22);
                             doc.setFontSize(20); 
-                            doc.text(80, 10, "CREDIT NOTE");
-                            doc.setFontSize(15); doc.text(90, 30, cstkt.comment);
-                            doc.text(30, 20, 'Ticket Number'); doc.text(60, 20, cstkt.ticket_no);
-                            doc.text(30, 30, 'Approving User'); doc.text(60, 30, cstkt.auserid.name);
-                            doc.text(30, 40, 'Status');  doc.text(60, 40, cstkt.tstatus.STATUS);
-                            doc.text(30, 50, 'Comment'); doc.text(60, 50, cstkt.comment);
+                            doc.text(80, 10, "RECTIFICATION REPORT");
+                            
+                           doc.setFontSize(15); 
+                           doc.text(50, 40, 'Rectification Report No.'); if(cstkt.id) doc.text(110, 40, String(cstkt.id));
+                           doc.text(50, 50, 'Ticket Number'); if(cstkt.ticket_no) doc.text(110, 50, cstkt.ticket_no);
+                           doc.text(50, 60, 'Approving User');  if(cstkt.auserid.name) doc.text(110, 60, cstkt.auserid.name);
+                          // doc.text(50, 70, 'Amount'); doc.text(110, 70, cstkt.amount);
+                           doc.text(50, 80, 'Status');  if(cstkt.tstatus.STATUS) doc.text(110, 80, cstkt.tstatus.STATUS);
+                           doc.text(50, 90, 'Comments'); if(cstkt.comment) doc.text(110, 90, cstkt.comment);
                              //-------------------------------
-                           doc.save('Test.pdf');
+                           doc.save('RectificationReport.pdf');
                           };
               },
              onClickDel()
@@ -282,7 +286,7 @@ export default
                             let swal = this.$swal;  let me = this;
                             this.$swal({
                                       title: 'Are you sure?',
-                                      text: 'You will not be able to recover this Rectification Report!',
+                                      text: `You will not be able to recover this ${this.selectedTicketType}`,
                                       type: 'warning',   showCancelButton: true,
                                       confirmButtonColor: '#3085d6',   cancelButtonColor: '#d33',
                                       confirmButtonText: 'Yes',  cancelButtonText: 'cancel',
@@ -306,7 +310,7 @@ export default
                                     let swal = this.$swal;     let me = this;
                                     this.$swal({
                                               title: 'Are you sure?',
-                                              text: 'You will not be able to recover this Rectification Report!',
+                                              text:  `You will not be able to recover this ${this.selectedTicketType}`,
                                               type: 'warning',  showCancelButton: true,
                                               confirmButtonColor: '#3085d6',   cancelButtonColor: '#d33',
                                               confirmButtonText: 'Yes',   cancelButtonText: 'cancel',
