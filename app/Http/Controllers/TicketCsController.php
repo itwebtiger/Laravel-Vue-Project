@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Entities\Log;
+use App\Models\Entities\ticketlogs;
 use App\Models\Services\StateService;
 use App\Models\Services\TicketCsService;
 use App\Models\Services\UserService;
@@ -31,7 +32,6 @@ class TicketCsController extends Controller
         $this->stateService = $stateService;
         $this->locationService = $locationService;
     }
-    //
 
     public function addcsticket(Request $request)
     {   $rules = [ 'ticket_no'  =>  'required','QUOTE_ID'  =>  'required',
@@ -39,7 +39,8 @@ class TicketCsController extends Controller
         try {    $user = JWTAuth::parseToken()->authenticate();
                  $this->validate($request, $rules);
                  $gett1 = $this->ticketcsService->addcsticket($request);
-                   return response()->json(compact('gett1'));
+                 $this->ticketcsService->LogEntity($gett1, 'success', __CLASS__ . '::' .__FUNCTION__);
+                 return response()->json(compact('gett1'));
             } catch (Exception $e) 
             {    return $this->handleValidationException($e, $this->ticketcsService, __CLASS__ . '::' . __FUNCTION__, Log::LOG_LEVEL_ERROR);
             }
@@ -49,6 +50,8 @@ class TicketCsController extends Controller
         try {    $user = JWTAuth::parseToken()->authenticate();
                  $this->validate($request, $rules);
                  $gett1 = $this->ticketcsService->editcsticket($request);
+                 $this->ticketcsService->LogEntity($gett1, 'success', __class__ . '::' . __FUNCTION__);
+                 $this->ticketcsService->TicketLogEntity($gett1, 'success', __class__ . '::' . __FUNCTION__);
                  return response()->json(compact('gett1'));
               } catch (Exception $e) 
             {    return $this->handleValidationException($e, $this->ticketcsService, __CLASS__ . '::' . __FUNCTION__, Log::LOG_LEVEL_ERROR);

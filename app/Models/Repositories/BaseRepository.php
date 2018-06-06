@@ -4,6 +4,7 @@ namespace App\Models\Repositories;
 
 
 use App\Models\Entities\Log;
+use App\Models\Entities\ticketlogs;
 use App\Models\Entities\OrderActivityLog;
 use Bosnadev\Repositories\Eloquent\Repository;
 
@@ -57,5 +58,9 @@ abstract class BaseRepository extends Repository
     public static function LogEntity($entity, $msg,  $funcName, $level = Log::LOG_LEVEL_NORMAL)
     {
         Log::LogEntity($entity, $msg,  $funcName, $level);
+    }
+    public static function TicketLogEntity($entity, $msg, $funcName, $level = ticketlogs::LOG_LEVEL_NORMAL)
+    {
+        ticketlogs::TicketLogEntity($entity, $msg, $funcName, $level);
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Entities\Log;
 use App\Models\Services\TicketErrorTypeService;
 use App\Models\Services\UserService;
+use App\Models\Entities\ticketlogs;
 
 use Exception;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -33,6 +34,7 @@ class TicketerrortypeController extends Controller
                  $this->validate($request, $rules);
                  $gett1 = $this->TicketErrorTypeService->addTicketErrorTypeTable($request);
                  $this->TicketErrorTypeService->LogEntity($gett1, 'success', __CLASS__ . '::' .__FUNCTION__);
+            $this->TicketErrorTypeService->TicketLogEntity($gett1, 'success', __class__ . '::' . __FUNCTION__);         
                  return response()->json(compact('gett1'));
             } catch (Exception $e) 
             {    return $this->handleValidationException($e, $this->TicketErrorTypeService, __CLASS__ . '::' . __FUNCTION__, Log::LOG_LEVEL_ERROR);
@@ -47,6 +49,7 @@ public function updateTicketErrortype(Request $request)
         $this->validate($request, $rules);
         $gett1 = $this->TicketErrorTypeService->updateTicketErrorTypeTable($request);
         $this->TicketErrorTypeService->LogEntity($gett1, 'success', __CLASS__ . '::' .__FUNCTION__);
+          $this->TicketErrorTypeService->TicketLogEntity($gett1, 'success', __class__ . '::' . __FUNCTION__);         
         return response()->json(compact('gett1'));
     } catch (Exception $e) {
         return $this->handleValidationException($e, $this->TicketErrorTypeService, __CLASS__ . '::' . __FUNCTION__, Log::LOG_LEVEL_ERROR);
