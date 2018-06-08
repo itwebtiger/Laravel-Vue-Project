@@ -26,10 +26,12 @@
                     <div class="col-md-6" v-if="selectedTicketType == 'TYPE1'">
                           <ticket-type1></ticket-type1>
                           <ticket-type1crud></ticket-type1crud>
+                        
                     </div>
                     <div class="col-md-6" v-if="selectedTicketTypeId == 2">
                         <ticket-type2A></ticket-type2A>  
                         <ticket-type2Acrud></ticket-type2Acrud>
+                        <ticket-logs></ticket-logs>
                     </div>
                     <div class="col-md-6" v-if="selectedTicketType == 'TYPE2B'">
                     <ticket-type2B></ticket-type2B>
@@ -80,6 +82,7 @@
     import V6Items from './V6Items.vue'
     import bomfinish from './bomfinish.vue'
     import bomcomponent from './bomcomponents.vue'
+    import TicketLogs from './CsTicketLogs.vue'
     import CsTicketType1 from './CsTicketType1.vue'
     import CsTicketType1Crud from './CsTicketType1Crud.vue'
     import CsTicketType2ACrud from './Type2A/CsTicketType2ACrud.vue'
@@ -118,8 +121,8 @@
                       'csticket-crud-modal': CsTicketCrudModal,
                       'csticket-list-table': CsTicketListTable,
                       'order-info': OrderInfo,
+                      'ticket-logs':TicketLogs,
                       'order-history-summary': OrderHistorySummary, 'v6items':V6Items,'bomfinish':bomfinish,'bomcomponent':bomcomponent,
-                     // 'email-booking-info': EmailBookingInfo,
                       'ticket-type1': CsTicketType1,'ticket-type1crud': CsTicketType1Crud,
                       'ticket-type2A': CsTicketType2A,'ticket-type2Acrud': CsTicketType2ACrud,
                       'ticket-type2B': CsTicketType2B,
