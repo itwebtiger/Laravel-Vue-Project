@@ -60,8 +60,8 @@ export default
 {    computed: 
         { ...mapGetters({    }),
           ...mapState({ user: state => state.authUser,
-                        selectedTicketttype1: state => state.cstkt.selectedTicket.ttype2a,
-                        csType1perTicket: state => state.cstickettype.csType2AperTicket,
+                        selectedTicketttype1: state => state.cstkt.selectedTicket.ttype2a, //from main page--no subticket added
+                        csType1perTicket: state => state.cstickettype.csType2AperTicket, //after update
                         selectedTicket: state => state.cstkt.selectedTicket,
                         selectedTicketType: state => state.cstkt.selectedTicketType,
                       }),

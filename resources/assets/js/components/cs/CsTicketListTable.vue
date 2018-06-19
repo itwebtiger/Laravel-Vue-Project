@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <vuetable ref="permissionvuetable"
+        <vuetable ref="permissionvuetable" 
                   :api-url="url"
                   :fields="fields"
                   :per-page="perPage"
@@ -27,10 +27,15 @@
                   :css="css.table"
                   :sort-order="sortOrder"
                   :multi-sort="true"
+                  :selected-to="selectedRow"
+            
+                  track-by="ticket_no"
                   @CustomAction:action-item="onActions"
                   :append-params="moreParams"
                   @vuetable:pagination-data="onPaginationData"
                   @vuetable:radiobox-toggled="onRadioChecked"
+                
+                
         ></vuetable>
         <div class="vuetable-pagination">
             <vuetable-pagination-info ref="permissionpaginationInfo"
@@ -59,6 +64,10 @@
 
     export default 
     {   computed: { url(){  // return api.currentPermissionNodes; 
+                             var aa= api.currentTicketNodes;
+                            
+                             console.log('aa api=',aa);
+                             // console.log('aa api.body=',aa.response);
                              return api.currentTicketNodes; 
                          }  
                   },
@@ -70,13 +79,21 @@
                                this.$store.dispatch('getticketerrortypetable');
                                this.$store.dispatch('getuserlist');
                               //  this.$store.dispatch('getticketstatustable');
+                              console.log('csticketlist-created-hehehe-this.url aa=',this.url);
+                         
+                             //  axios.get(api.currentTicketNodes)
+                           //  .then(response => { console.log('aa response got', response)})
+                           //   .catch(response => {  console.error('aa response.error=', error);});
                   },
         data () 
            { return {   paginationPath: '',
                         search: '',
                         perPage: 5,
+                      
+                              selectedRow: [] ,  // must be defined as an array
+                          
                         fields: 
-                           [   { name: '__radiobox',  titleClass: 'text-center', dataClass: 'text-center',  },
+                           [   { name: '__radiobox:ticket_no',  titleClass: 'text-center', dataClass: 'text-center',  },
                                {  title: 'TicketNo', name: 'ticket_no',sortField: 'ticket_no',  titleClass: 'text-right',  dataClass: 'text-right' },
                                 //{  title: 'Type', name: 'ticket_type_id',sortField: 'ticket_type_id',     },
                                 {  title: 'Type', name: 'ttype.ticket_type',sortField: 'ticket_type_id',     },
@@ -117,8 +134,24 @@
                 moreParams: {}
             }
         },
+       
+
         methods: 
-        {             
+        {    // @vuetable:loaded="onLoadingCompleted"
+           /*  onLoadingCompleted() 
+            {   
+             console.log('onLoadingCompleted inside');
+            //  console.log('onLoadingCompleted rowdata=', rowData);
+             this.$refs.permissionvuetable.selectId(101); 
+             var cc=  this.$refs.permissionvuetable.selectedTo;
+                console.log('onLoadingCompleted selectedTo bb aa rowdata=', cc);
+             // this.$refs.permissionvuetable.toggleDetailRow(data.yfUserID)
+            var bb= this.$refs.permissionvuetable.showDetailRow[0];
+             // var bb=this.$refs.permissionvuetable.toggleDetailRow(101);
+               console.log('onLoadingCompleted bb aa rowdata=', bb);
+            // console.log('onLoadingCompleted rowdata2=', rowData);
+             },      
+             */
             onClickNew() 
             {   console.log('/cs/list-- onClickNew');
                 let formData = {   ticket_no: '',ticket_type_id: '',QUOTE_ID: '',ORDER_ID: '',
@@ -133,8 +166,10 @@
             onRadioChecked( isChecked, dataItem) 
             {   console.log('/cs/list---onRadioChecked isChecked=', isChecked);
                 console.log('/cs/list---onRadioChecked dataItem=', dataItem); 
+           
                 if(dataItem != null)
                 this.$store.dispatch('setSelectedTicket', dataItem);
+                
             },
             onPaginationData (paginationData) 
             {   this.$refs.permissionpagination.setPaginationData(paginationData);
@@ -194,13 +229,15 @@
                 },
         watch: 
         { 'perPage' (newVal, oldVal) 
-            { this.$nextTick(function() { this.$refs.permissionvuetable.refresh() }) },
+            {  console.log('csticketlisttable.vue--watch--perpage----hehehe');
+                this.$nextTick(function() { this.$refs.permissionvuetable.refresh() }) 
+            },
            'paginationComponent' (newVal, oldVal) 
-                  {   console.log('manoj in pagination comp');
+                  {   console.log('csticketlisttable.vue--watch--paginationcomp----hehehe');
                       this.$nextTick(function() 
                        { this.$refs.permissionpagination.setPaginationData(this.$refs.permissionvuetable.tablePagination) })
                   },
-           url() {   console.log('/cs/list--watch +++++++ url() = ', this.url);
+           url() {   console.log('csticketlisttable.vue--watch--+++++hehehe++ url() = ', this.url);
                       this.$nextTick(function() {  this.$refs.permissionvuetable.refresh() })
                     }
         },
