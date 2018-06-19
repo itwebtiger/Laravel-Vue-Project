@@ -19,49 +19,29 @@
                          <order-info></order-info>
                          <v6items></v6items>
                          <order-history-summary></order-history-summary>
-                         <!--  <bomfinish></bomfinish> <bomcomponent></bomcomponent> -->
-                      
-                    </div>
-
-                    <div class="col-md-6" v-if="selectedTicketType == 'TYPE1'">
-                          <ticket-type1></ticket-type1>
-                          <ticket-type1crud></ticket-type1crud>
-                        
-                    </div>
-                    <div class="col-md-6" v-if="selectedTicketTypeId == 2">
+                     </div>
+                      <div class="col-md-6" v-if="selectedTicketTypeId == 2">
                         <ticket-type2A></ticket-type2A>  
                         <ticket-type2Acrud></ticket-type2Acrud>
-                        <ticket-logs></ticket-logs>
-                    </div>
-                    <div class="col-md-6" v-if="selectedTicketType == 'TYPE2B'">
-                    <ticket-type2B></ticket-type2B>
-                    </div>
-                    <div class="col-md-6" v-if="selectedTicketTypeId == 3 || selectedTicketTypeId == 4 || selectedTicketTypeId == 7">
-                    <ticket-type3></ticket-type3>
-                    <ticket-type3crud></ticket-type3crud>
-                    </div>
+                    
+                      </div>
+                      <div class="col-md-6" v-if="selectedTicketTypeId == 3 || selectedTicketTypeId == 4 || selectedTicketTypeId == 7">
+                        <ticket-type3></ticket-type3>
+                        <ticket-type3crud></ticket-type3crud>
+                      
+                      </div>
                       <div class="col-md-6" v-if="selectedTicketTypeId == 5 || selectedTicketTypeId == 8">
-                    <ticket-type4></ticket-type4>
-                    <ticket-type4crud></ticket-type4crud>
-                    </div>
+                        <ticket-type4></ticket-type4>
+                        <ticket-type4crud></ticket-type4crud>
+               
+                      </div>
                       <div class="col-md-6" v-if="selectedTicketTypeId == 6 || selectedTicketTypeId == 9">
-                    <ticket-type5></ticket-type5>
-                     <ticket-type5crud></ticket-type5crud>
-                    </div>
-                      <div class="col-md-6" v-if="selectedTicketType == 'TYPE6'">
-                    <ticket-type6></ticket-type6>
-                    </div>
-                      <div class="col-md-6" v-if="selectedTicketType == 'TYPE7'">
-                    <ticket-type7></ticket-type7>
-                    </div>
-                      <div class="col-md-6" v-if="selectedTicketType == 'TYPE8'">
-                    <ticket-type8></ticket-type8>
-                    </div>
-                      <div class="col-md-6" v-if="selectedTicketType == 'TYPE9'">
-                    <ticket-type9></ticket-type9>
-                    </div>
-                   
-
+                        <ticket-type5></ticket-type5>
+                        <ticket-type5crud></ticket-type5crud>
+                      </div>
+                      <div class="col-md-6" v-if="selectedTicket">
+                         <ticket-logs></ticket-logs>
+                     </div>
                 </div>
             </div>
         </div>

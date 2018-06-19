@@ -167,6 +167,8 @@ export default
             })
         },
 
+
+
         setSelectedTicket:({commit}, data) => 
         { commit({ type: types.SET_SELECTED_TICKET, selectedTicket: data , 
                                                     selectedTicketType:data.ttype.ticket_type 

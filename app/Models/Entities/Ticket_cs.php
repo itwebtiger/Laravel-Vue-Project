@@ -23,8 +23,7 @@ class Ticket_cs extends BaseModel
 
     public function cs_ticketno() //---not used
     {   $tktno = Ticket_cs::orderBy('id', 'desc')->first();
-       // $delAddr = V6Address::where('ADDR_ID', $delAddrId)->first();
-      // return $this->belongsTo(Ticket_cs::class)->orderBy('id', 'desc')->first();
+      
       return $tktno;
        
     }
@@ -101,28 +100,32 @@ class Ticket_cs extends BaseModel
     public function userid()
     {
         return $this->belongsTo(user::class, 'user_id', 'id')->where('active', 1);
-                                    //column name in ticket_cs table//then column name in status table
+                                   
     }
-    public function auserid() //allocated user_id
+    public function auserid() 
     {
         return $this->belongsTo(user::class, 'allocated_user_id', 'id')->where('active', 1);
-                                                      //column name in ticket_cs table//then column name in status table
+                 
     }
-    public function buserid() //allocated user_id
+    public function buserid() 
     {
         return $this->belongsTo(user::class, 'managed_user_id', 'id')->where('active', 1);
-                                                      //column name in ticket_cs table//then column name in status table
+                       
     }
     public function agroupid()
     {
         return $this->belongsTo(Group::class, 'GROUP_ID', 'id')->where('active', 1);
-                                                      //column name in ticket_cs table//then column name in status table
+                                                      
     }
     public function bgroupid()
     {
         return $this->belongsTo(Group::class, 'user_id', 'id')->where('active', 1);
-                                                      //column name in ticket_cs table//then column name in status table
-                                                      //->where('PRICE','QUOTE_VERS_STOP')
+                                                     
+    }
+    public function ticketlogs()
+    {
+        return $this->hasmany(ticketlogs::class, 'ticket_no', 'ticket_no');
+                                                     
     }
 
     public function items() {
