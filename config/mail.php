@@ -84,10 +84,10 @@ return [
     |
     */
 
-    //'username' => env('MAIL_USERNAME'),
+    'username' => env('MAIL_USERNAME'),
 
-    //'password' => env('MAIL_PASSWORD'),
-    'auth_mode' => null,
+    'password' => env('MAIL_PASSWORD'),
+   // 'auth_mode' => null,
 
     /*
     |--------------------------------------------------------------------------
