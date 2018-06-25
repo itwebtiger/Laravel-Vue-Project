@@ -76,6 +76,7 @@ import Csttype from './components/cs/csttype/CsTicketType.vue'
 import CsStatus from './components/cs/csstatus/CsTicketStatus.vue'
 import CsCnStatus from './components/cs/cnstatus/CsCnTicketStatus.vue'
 import CsErrorType from './components/cs/errortype/CsErrorType.vue'
+import CsTicketLogs from './components/cs/logs/Log.vue'
 
 let routes = [
     { path: '/login', component: LoginView, name: 'login', meta: { requiresGuest: true } },
@@ -136,6 +137,7 @@ let routes = [
                     { path: '/cststatus', component: CsStatus,  meta: { requiresAuth: true }},
                     { path: '/cstcnstatus', component: CsCnStatus,  meta: { requiresAuth: true }},
                     { path: '/errortype', component: CsErrorType,  meta: { requiresAuth: true }},
+                    { path: '/csticketlogs', component: CsTicketLogs,  meta: { requiresAuth: true }},
                     
                 ]
             },

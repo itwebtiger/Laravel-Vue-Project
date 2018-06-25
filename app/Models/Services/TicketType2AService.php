@@ -14,6 +14,5 @@ class TicketType2AService extends BaseService
         public function addTicketType2ATable($request)   {  return $this->TicketType2ARepository->addTicketType2ATable($request); }
         public function deleteTicketType2ATable($request) {  return $this->TicketType2ARepository->deleteTicketType2ATable($request);  }
         public function updateTicketType2ATable($request) {  return $this->TicketType2ARepository->updateTicketType2ATable($request);   }
-        public function getByPaginate( $request)
-        {   return $this->TicketType2ARepository->getByPaginate($request);}
+       
 }

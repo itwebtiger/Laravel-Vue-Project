@@ -420,5 +420,7 @@ export const gettickettype5tableapi = apiDomain + '/csticket/gettype5tickettable
 export const deletetype5 = apiDomain + '/csticket/deletetype5';
 export const updatetype5 = apiDomain + '/csticket/updatetype5';
 
+export const csTicketLogList = apiDomain + '/csTicketloglist';
+
 
 

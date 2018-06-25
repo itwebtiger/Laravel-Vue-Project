@@ -144,8 +144,7 @@ class TicketCsRepository extends BaseRepository
         ->with('terrortype')
         ->with('bgroupid')
         ->with('v6items')
-        //->with('bomfinish')
-        //->with('bomcomponent')
+        ->with('ticketlogs')
         ->with('location');
 
        // $salesOrderNumber = trim($search['salesOrderNumber']);
@@ -235,26 +234,26 @@ class TicketCsRepository extends BaseRepository
     public function gettype1ticket($request)
     {
        $qi = $request->input('ticket_no'); 
-       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype1')->get()->toArray();
+       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype1')->with('ticketlogs')->get()->toArray();
     }
     public function gettype2Aticket($request)
     {   
         $qi = $request->input('ticket_no'); 
-       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype2a')->get()->toArray();
+       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype2a')->with('ticketlogs')->get()->toArray();
      
     }
     public function gettype3ticket($request)
     {   
         $qi = $request->input('ticket_no'); 
-       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype3')->get()->toArray();
+       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype3')->with('ticketlogs')->get()->toArray();
     }
     public function gettype4ticket($request)
     {  $qi = $request->input('ticket_no'); 
-       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype4')->get()->toArray();
+       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype4')->with('ticketlogs')->get()->toArray();
     }
     public function gettype5ticket($request)
     {  $qi = $request->input('ticket_no'); 
-       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype5')->get()->toArray();
+       return $this->model->where('active',1)->where('ticket_no', $qi)->with('ttype5')->with('ticketlogs')->get()->toArray();
     }
 
 }
