@@ -401,5 +401,7 @@ Route::get('/csticket/tickettype1pagination', 'Tickettype1Controller@getByPagina
     Route::post('/csticket/gettype5tickettable', 'TicketCsController@gettype5ticket');
     Route::post('/csticket/deletetype5', 'Tickettype5Controller@deleteTicketType5');
     Route::post('/csticket/updatetype5', 'Tickettype5Controller@updateTicketType5');
+
+    Route::get('csTicketloglist', 'TicketlogsController@getLogList');
     
 });
