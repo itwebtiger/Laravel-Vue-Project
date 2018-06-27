@@ -18,7 +18,9 @@
     export default 
     {   computed: {                                          },
         data () {    return {      }                         },
-        created() {    console.log('LogList vue created!');  },
+        created() {    console.log('LogList vue created!');  
+                    this.$store.dispatch('getuserlist');
+                    },
         mounted() {    console.log('LogList vue mounted');   },
         components: {        'log-list' : LogList,           },
         methods: {                                           }

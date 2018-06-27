@@ -101,7 +101,6 @@
                                 {  title: 'OrderID', name: 'ORDER_ID',sortField: 'ORDER_ID',     },
                                 {  title: 'Status', name: 'tstatus.STATUS',sortField: 'status',     },
                                 {  title: 'Location', name: 'location.name',    },
-                                {  title: 'CONTACT', name: 'CONTACT_PERSON',     },
                                // {  title: 'Comments', name: 'comment',   },
                                 {  title: 'AllocatedUser', name: 'auserid.name',sortField: 'user_id',     },
                                 {  title: 'ManagedUser', name: 'buserid.name',sortField: 'user_id',     },
@@ -137,21 +136,7 @@
        
 
         methods: 
-        {    // @vuetable:loaded="onLoadingCompleted"
-           /*  onLoadingCompleted() 
-            {   
-             console.log('onLoadingCompleted inside');
-            //  console.log('onLoadingCompleted rowdata=', rowData);
-             this.$refs.permissionvuetable.selectId(101); 
-             var cc=  this.$refs.permissionvuetable.selectedTo;
-                console.log('onLoadingCompleted selectedTo bb aa rowdata=', cc);
-             // this.$refs.permissionvuetable.toggleDetailRow(data.yfUserID)
-            var bb= this.$refs.permissionvuetable.showDetailRow[0];
-             // var bb=this.$refs.permissionvuetable.toggleDetailRow(101);
-               console.log('onLoadingCompleted bb aa rowdata=', bb);
-            // console.log('onLoadingCompleted rowdata2=', rowData);
-             },      
-             */
+        {   
             onClickNew() 
             {   console.log('/cs/list-- onClickNew');
                 let formData = {   ticket_no: '',ticket_type_id: '',QUOTE_ID: '',ORDER_ID: '',

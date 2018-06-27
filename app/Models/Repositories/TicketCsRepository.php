@@ -149,16 +149,16 @@ class TicketCsRepository extends BaseRepository
 
        // $salesOrderNumber = trim($search['salesOrderNumber']);
         $ticketStatus = trim($search['ticketStatus']); 
-        $ticketType = trim($search['ticketType']);
+        $ticketType =   trim($search['ticketType']);
        // $orderStatus = trim($search['orderStatus']);
         $orderLocation = trim($search['orderLocation']);
-        $ticket_no = trim($search['ticket_no']);
-        $ORDER_ID = trim($search['ORDER_ID']);
-        $QUOTE_ID = trim($search['QUOTE_ID']);
-        $createdby = trim($search['createdby']);
-        $updatedby = trim($search['updatedby']);
+        $ticket_no =    trim($search['ticket_no']);
+        $ORDER_ID =     trim($search['ORDER_ID']);
+        $QUOTE_ID =     trim($search['QUOTE_ID']);
+        $createdby =    trim($search['createdby']);
+        $updatedby =    trim($search['updatedby']);
         $assigneduser = trim($search['assigneduser']);
-        $manageduser = trim($search['manageduser']);
+        $manageduser =  trim($search['manageduser']);
         if (count($search['dateRange']) == 2)
         {   $dateRangeFrom = trim($search['dateRange'][0]); $dateRangeTo = trim($search['dateRange'][1]);  }
         else

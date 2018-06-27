@@ -87,15 +87,14 @@
             'cpmactivity-crud-modal': CpmActivityCrudModal,
         },
         data () 
-        { return {       paginationPath: '',    search: '',       perPage: 5,
+        { return {       paginationPath: '',    
+                         search: '',       
+                         perPage: 5,
                 fields: 
                 [
                     {  title: 'Location',       name: 'service.location.name',    sortField: 'locations.name',  },
                     {  title: 'Service Name',  name: 'service.name',  sortField: 'cpm_services.name',    },
-                    {   title: 'Service Group Name',
-                        name: 'service_group_activity.service_group.name',
-                        sortField: 'cpm_service_groups.name',
-                    },
+                    {   title: 'Service Group Name',   name: 'service_group_activity.service_group.name',   sortField: 'cpm_service_groups.name',  },
                     {   title: 'Activity Name',   name: 'name',  sortField: 'cpm_activities.name',   },
                     {  title: 'SQL Statement1',  name: 'sql_statement',   dataClass: 'sql-statement', visible: false,    },
                     {   title: 'Duration',  name: 'duration',    },

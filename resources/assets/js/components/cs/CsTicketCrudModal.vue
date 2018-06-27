@@ -250,6 +250,26 @@
                
                OnSave() 
                 {  console.log('/cs/cscrud-----OnSave_click');
+                    console.log('/cs/crud-----onSave:',this.formData);
+                      if ( this.formData.QUOTE_ID==null)
+                             {  this.$store.dispatch('showErrorNotification', 'Please search an Order');  return;
+                            }
+                       else if (!this.formData.group1) {this.$store.dispatch('showErrorNotification', 'Please select Allocated User');  return;}
+                      else if(this.formData.group1 && this.formData.group1.id=="")
+                             {  this.$store.dispatch('showErrorNotification', 'Please select Allocated User');  return;
+                            }
+                     else if (!this.formData.group2) {this.$store.dispatch('showErrorNotification', 'Please select Managed User');  return;}
+                     else if(this.formData.group2 && this.formData.group2.id=="")
+                             {  this.$store.dispatch('showErrorNotification', 'Please select Managed User');  return;
+                            }
+                     else if ( this.formData.ticket_type_id=="")
+                             {  this.$store.dispatch('showErrorNotification', 'Please select TYPE');  return;
+                            }
+                       else if ( this.formData.status_id=="")
+                             {  this.$store.dispatch('showErrorNotification', 'Please select Status');  return;
+                            }
+                           
+
 
                           var allu=this.allusers; var uu1=this.formData.user1; var uu2=this.formData.user2;
                           var allocateduseremail=''; var manageduseremail='';
@@ -286,16 +306,10 @@
                     let payload = {  isShow: false,  data: this.formData, };
                     if (this.csticketActivityData.action === 'Add')// add new state
                        {    console.log('/cs/crud-----inside add');
-                            console.log('/cs/crud-----add inside formdata:',this.formData);
+                           
                               
-                            console.log('/cs/crud-----add inside formdata:',this.formData.CONTACT_PERSON);
-                          //  if (this.isEmpty(this.formData.CONTACT_PERSON) || this.isEmpty(this.formData.ticket_type_id) || this.isEmpty(this.formData.status_id) )
-                            if (this.isEmpty(this.formData.CONTACT_PERSON)  )
-                            {
-                             //this.$store.dispatch('showErrorNotification', 'Please enter TYPE, STATUS, CONTACT_PERSON !');
-                             this.$store.dispatch('showErrorNotification', 'Please enter TYPE, STATUS, CONTACT_PERSON !');
-                                return;
-                            }
+                           console.log('/cs/crud-----add inside formdata:',this.formData);
+                   
                             console.log('/cs/crud-----inside payload:',payload);
                             this.$store.dispatch('setCsTicketShowPopup', payload); 
                             this.$store.dispatch('addCsTicket', this.formData)

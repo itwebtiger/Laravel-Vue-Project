@@ -3,19 +3,19 @@
         <form class="form-inline form-group-sm ">
             <div class="form-group">
                 <label>Search for:</label>
-                <Select clearable filterable v-model="formSearchData.type"
-                        placeholder="Please select a type..."
-                        style="width:180px"
-                >
-                    <Option v-for="item in typeOptions" :value="item.value" :key="item" :label="item.label">{{ item.label }}</Option>
-                </Select>
-                <Select clearable filterable v-model="formSearchData.level"
-                        placeholder="Please select a level..."
-                        style="width:180px"
-                >
-                    <Option v-for="item in levelOptions" :value="item.value" :key="item" :label="item.label">{{ item.label }}</Option>
-                </Select>
-                <input type="text" v-model="formSearchData.filterText" class="form-control" @keyup.enter="doFilter" placeholder="type...">
+                  <input type="text" v-model="formSearchData.ticket_no" class="form-control" @keyup.enter="doFilter" placeholder="Ticket No">
+                  <input type="text" v-model="formSearchData.subticket_no" class="form-control" @keyup.enter="doFilter" placeholder="SubTicket No">
+               
+             
+                  <Select clearable filterable v-model="formSearchData.auser"
+                                        @on-change="onChangeUser"
+                                        placeholder="User..."
+                                        style="width:180px"
+                                > 
+                         <Option v-for="item in usersOptions" :value="item.value" :key="item" :label="item.label">{{ item.label }}</Option>
+                    </select>
+                      
+              
                 <button class="btn btn-success btn-sm" @click.prevent="doFilter">Search</button>
                 <button class="btn btn-warning btn-sm" @click.prevent="resetFilter">Reset</button>
             </div>
@@ -25,46 +25,50 @@
 
 <script>
     import input from 'vue-strap/src/Input'
+     import { mapState } from 'vuex'
 
-    export default {
-        created() {
-            console.log('LogFilterBar Component created.');
-        },
-        components: {
-            'bs-input': input,
-        },
-        data () {
-            return {
-                formSearchData: {
-                    type: 'USER_ACTION',
-                    level: 'ERROR',
-                    filterText: '',
-                },
-                typeOptions: [
-                    {value: 'USER_ACTION', label: 'USER_ACTION'},
-                    {value: 'SYSTEM_ACTION', label: 'SYSTEM_ACTION'},
-                ],
-                levelOptions: [
-                    {value: 'ERROR', label: 'ERROR'},
-                    {value: 'NORMAL', label: 'NORMAL'},
-                ],
-            }
-        },
-        methods: {
-            doFilter () {
-                console.log('doFilter');
-                this.$events.fire('log-list-filter-set', this.formSearchData);
+    export default 
+    {  
+        
+         created() {   console.log('LogFilterBar Component created.');
+                          this.$store.dispatch('getuserlist') 
+                       .then((response) =>
+                        { console.log('/cs/search.vue-created getuserlist success=', response);
+                          this.collectUserOptions(response.data);
+                        })
+                       .catch((error) => {  console.error('/cs/search.vue-getuserlist error=', error); });
+                     
+                  },
+        components: { 'bs-input': input, },
+        data () 
+           {  return {  formSearchData: {    
+                                             filterText: '', auser: '',
+                                           
+                                        },usersOptions:[],
+                      
+                    }
             },
-            resetFilter () {
-                console.log('resetFilter');
-                this.formSearchData = {
-                    type: 'USER_ACTION',
-                    level: 'ERROR',
-                    filterText: '',
-                };
-                this.$events.fire('log-list-filter-reset')
-            },
-        }
+        methods: {  doFilter () {  console.log('doFilter----formSearchData=', this.formSearchData);
+                                   this.$events.fire('log-list-filter-set', this.formSearchData);
+                                },
+                    resetFilter () 
+                              {  console.log('resetFilter');
+                                 this.formSearchData = 
+                                    {   type: 'USER_ACTION',
+                                        level: 'ERROR',
+                                        filterText: '', auser:'',
+                                   };
+                                  this.$events.fire('log-list-filter-reset')
+                              },
+                    collectUserOptions(users) 
+                                    {  console.log('/cs/search---collectUserOptions types=',users);
+                                        let options = [];
+                                        for (let users1 in users) 
+                                        { options.push({value: users[users1].id, label: users[users1].name});  }
+                                        this.usersOptions = options;
+                                    },
+                    onChangeUser(val) { console.log('/cs/Search.vue--onChangeCreatedBy val=',val);   },
+                }
     }
 </script>
 <style scoped>

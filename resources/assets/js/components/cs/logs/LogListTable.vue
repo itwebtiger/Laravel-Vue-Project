@@ -83,7 +83,7 @@
                                         { title: 'UpdatedBy', name: 'updated_by.name',titleClass: 'text-left', dataClass: 'text-left',},
                                         { title: 'UpdatedAt', name: 'updated_at',titleClass: 'text-left', dataClass: 'text-left',  },
                                      ],
-                             css: {  table: {  tableClass: 'table table-bordered',
+                             css: {  table: {  tableClass: 'table table-bordered  table-striped table-hover',
                                                ascendingIcon: 'glyphicon glyphicon-chevron-up',
                                                descendingIcon: 'glyphicon glyphicon-chevron-down',
                                                
@@ -103,7 +103,7 @@
                                                                     
                                    },
                             sortOrder: [   { field: 'id', sortField: 'id', direction: 'desc'}   ],
-                            moreParams: { filter: {   type: 'USER_ACTION',  level: 'NORMAL',  }, },
+                            moreParams: {  },
                         }
                  },
         methods: {   onPaginationData (paginationData) 
