@@ -42,7 +42,7 @@
         components: { 'bs-input': input, },
         data () 
            {  return {  formSearchData: {    
-                                             filterText: '', auser: '',
+                                             filterText: '', auser: '', ticket_no:'',subticket_no:'',
                                            
                                         },usersOptions:[],
                       
@@ -53,10 +53,12 @@
                                 },
                     resetFilter () 
                               {  console.log('resetFilter');
+                                // this.$events.fire('/cs/Search.vue--order-list-reset', this.formSearchData)
                                  this.formSearchData = 
-                                    {   type: 'USER_ACTION',
-                                        level: 'ERROR',
-                                        filterText: '', auser:'',
+                                    {  // type: 'USER_ACTION',
+                                       // level: 'ERROR',
+                                       // filterText: '', auser:'',
+                                         filterText: '', auser: '', ticket_no:'',subticket_no:'',
                                    };
                                   this.$events.fire('log-list-filter-reset')
                               },

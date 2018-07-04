@@ -75,7 +75,7 @@
                   return {   url: api.csTicketLogList,
                              paginationPath: '',
                              search: '',
-                             perPage: 5,
+                             perPage: 10,
                              fields: [  { title: 'TicketNo', name: 'ticket_no', titleClass: 'text-left', dataClass: 'text-left', },
                                         { title: 'SubTicketNo', name: 'subticket_no',titleClass: 'text-left',dataClass: 'text-left', },
                                         { title: 'FunctionName',name: 'function_name',titleClass: 'text-left', dataClass: 'text-left', },
