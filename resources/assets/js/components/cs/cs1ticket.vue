@@ -70,7 +70,7 @@
     import CsTicketType4Crud from './Type4/CsTicketType4Crud.vue'
     import CsTicketType5Crud from './Type5/CsTicketType5Crud.vue'
     import CsTicketType2A from './CsTicketType2A.vue'
-    import CsTicketType2B from './CsTicketType2B.vue'
+   
     import CsTicketType3 from './CsTicketType3.vue'
     import CsTicketType4 from './CsTicketType4.vue'
     import CsTicketType5 from './CsTicketType5.vue'
@@ -105,7 +105,7 @@
                       'order-history-summary': OrderHistorySummary, 'v6items':V6Items,'bomfinish':bomfinish,'bomcomponent':bomcomponent,
                       'ticket-type1': CsTicketType1,'ticket-type1crud': CsTicketType1Crud,
                       'ticket-type2A': CsTicketType2A,'ticket-type2Acrud': CsTicketType2ACrud,
-                      'ticket-type2B': CsTicketType2B,
+                     
                       'ticket-type3': CsTicketType3,'ticket-type3crud': CsTicketType3Crud,
                       'ticket-type4': CsTicketType4,'ticket-type4crud': CsTicketType4Crud,
                       'ticket-type5': CsTicketType5,'ticket-type5crud': CsTicketType5Crud,
