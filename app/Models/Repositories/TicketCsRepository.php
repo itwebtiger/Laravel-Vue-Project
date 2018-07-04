@@ -45,6 +45,7 @@ class TicketCsRepository extends BaseRepository
         $ticketcs->CONTACT_EMAIL = $request->input('CONTACT_EMAIL'); 
         $ticketcs->CONTACT_PHONE = $request->input('CONTACT_PHONE');  
         $ticketcs->PRICE = $request->input('PRICE');   
+        $ticketcs->CUST_NAME = $request->input('CUST_NAME');
         
         $ticketcs->managed_user_id = $request->input('user2.id'); //managed user id
         $ticketcs->user_id = $request->input('group2.id');   //managed user group
@@ -76,6 +77,7 @@ class TicketCsRepository extends BaseRepository
         $ticketcs->ORDER_ID = $request->input('ORDER_ID');  
         $ticketcs->comment = $request->input('comment');
         $ticketcs->QUOTE_ID = $request->input('QUOTE_ID'); 
+       
       
         $ticketcs->location_id = $request->input('location_id');   
         $ticketcs->ticket_no = $request->input('ticket_no');   
@@ -87,9 +89,10 @@ class TicketCsRepository extends BaseRepository
         $ticketcs->managed_user_id = $request->input('user2.id'); //managed user id
         $ticketcs->user_id = $request->input('group2.id');   //managed user group
 
-        $ticketcs->CONTACT_PERSON = $request->input('CONTACT_PERSON');  
-        $ticketcs->CONTACT_EMAIL = $request->input('CONTACT_EMAIL'); 
-        $ticketcs->CONTACT_PHONE = $request->input('CONTACT_PHONE');
+      //  $ticketcs->CONTACT_PERSON = $request->input('CONTACT_PERSON');  
+      //  $ticketcs->CONTACT_EMAIL = $request->input('CONTACT_EMAIL'); 
+      //  $ticketcs->CONTACT_PHONE = $request->input('CONTACT_PHONE');
+        
     
         $ticketcs->save();
         Mail::raw($request, function ($message) use ($request) {
@@ -159,6 +162,7 @@ class TicketCsRepository extends BaseRepository
         $updatedby =    trim($search['updatedby']);
         $assigneduser = trim($search['assigneduser']);
         $manageduser =  trim($search['manageduser']);
+        $cust_name =  trim($search['CUST_NAME']);
         if (count($search['dateRange']) == 2)
         {   $dateRangeFrom = trim($search['dateRange'][0]); $dateRangeTo = trim($search['dateRange'][1]);  }
         else
@@ -200,6 +204,7 @@ class TicketCsRepository extends BaseRepository
         if ($ticketType)  {   $like = "{$ticketType}";  $query->where('ticket_type_id', 'LIKE', $like);}
        // if ($salesOrderNumber) {   $like = "%{$salesOrderNumber}%";  $query->where('status', 'LIKE', $like); }
         if ($orderLocation) {   $like = "{$orderLocation}";  $query->where('location_id', 'LIKE', $like); }
+        if ($cust_name) {   $like = "%{$cust_name}%";  $query->where('CUST_NAME', 'LIKE', $like); }
 
 
         return $query->paginate($perPage);

@@ -120,10 +120,10 @@
                 this.selectedRow = dataItem;
                 this.$store.dispatch('setSelectedOrder', dataItem);
                
-                this.$store.dispatch('getLastTicket'); //get the last ticket
+               // this.$store.dispatch('getLastTicket'); //get the last ticket
                 // this.$store.dispatch('displayCsTable', dataItem); //get tickets of this quote
                 
-                 this.$store.dispatch('getTicketsperQuote', dataItem); //get the last ticket
+               //  this.$store.dispatch('getTicketsperQuote', dataItem); //get the last ticket
                 
             },
             onPaginationData (paginationData) 

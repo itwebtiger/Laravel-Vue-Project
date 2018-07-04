@@ -99,6 +99,7 @@
                                 {  title: 'Type', name: 'ttype.ticket_type',sortField: 'ticket_type_id',     },
                                // {  title: 'QuoteID', name: 'QUOTE_ID',sortField: 'QUOTE_ID',     },
                                 {  title: 'OrderID', name: 'ORDER_ID',sortField: 'ORDER_ID',     },
+                                 {  title: 'CUSTOMER', name: 'CUST_NAME',sortField: 'user_id',     },
                                 {  title: 'Status', name: 'tstatus.STATUS',sortField: 'status',     },
                                 {  title: 'Location', name: 'location.name',    },
                                // {  title: 'Comments', name: 'comment',   },

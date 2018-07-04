@@ -33,7 +33,7 @@ class TicketType2ARepository extends BaseRepository
         $tickettype1->bb = $request->input('user.id'); //managed user id
         $tickettype1->cc = $request->input('group.id');   //managed user group
         $tickettype1->save();
-       // try {
+       try {
             Mail::raw($request, function ($message) use ($request) {
                 $message->from('OMS@dowell.com.au', 'OMS');
                 $message->to($request->input('approvinguseremail'));
@@ -44,9 +44,9 @@ class TicketType2ARepository extends BaseRepository
                 $message->subject("OMS: New Credit Note added to Ticket No-$tktno");
                 $message->setBody("New Credit Note has been added to Ticket No- $tktno, and assigned to you for approval.\n\n STATUS:$status\n\n Comments:$comments\n\n Please access server (http://10.102.108.10/) for further actions\n\nIts an automatically generated email, please do not reply.");
             });
-       // } catch (\Exception $ex) {
+        } catch (\Exception $ex) {
            // do nothing
-       // }
+        }
         return $tickettype1;
     }
 
@@ -65,7 +65,7 @@ class TicketType2ARepository extends BaseRepository
         $ttt->comment = $request->input('comment');
 
         $ttt->save();
-        //try {
+        try {
             Mail::raw($request, function ($message) use ($request) {
                 $message->from('OMS@dowell.com.au', 'OMS');
                 $message->cc($request->input('approvinguseremail'));
@@ -77,9 +77,9 @@ class TicketType2ARepository extends BaseRepository
                 $message->setBody("Credit Note has been changed in Ticket No- $tktno.\n\n Present Status:$status\n\n Comments:$comments\n\nPlease access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
 
             });
-       // } catch (\Exception $ex) {
+        } catch (\Exception $ex) {
            // do nothing
-       // }
+        }
         return $ttt;
     }
 

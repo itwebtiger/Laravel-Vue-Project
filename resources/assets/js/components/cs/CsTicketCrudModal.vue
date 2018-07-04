@@ -67,11 +67,7 @@
                         </td>
                        
                     </tr>
-                    <tr> <td colspan="2"><bs-input label="CONTACT_PERSON" type="text" required  :maxlength="255" :icon="true" v-model="formData.CONTACT_PERSON"></bs-input></td>
-                         <td> <bs-input label="PHONE" type="integer" required  :maxlength="255" :icon="true" v-model="formData.CONTACT_PHONE"></bs-input></td>
-                    </tr>
-                    <tr> <td colspan="2"><bs-input label="CONTACT_EMAIL"  type="email" placeholder="example@example.com"  required :maxlength="255" :icon="true" v-model="formData.CONTACT_EMAIL"></bs-input></td>  
-                    </tr>
+                   
                   </tbody>
               </table>
 
@@ -133,11 +129,7 @@
                         </td>
                            
                     </tr>
-                    <tr> <td colspan="2"><bs-input label="CONTACT_PERSON" type="text" required  :maxlength="255" :icon="true" v-model="formData.CONTACT_PERSON"></bs-input></td>
-                         <td> <bs-input label="PHONE" type="integer" required  :maxlength="255" :icon="true" v-model="formData.CONTACT_PHONE"></bs-input></td>
-                    </tr>
-                    <tr> <td colspan="2"><bs-input label="CONTACT_EMAIL"  type="email" placeholder="example@example.com"  required :maxlength="255" :icon="true" v-model="formData.CONTACT_EMAIL"></bs-input></td>  
-                    </tr>
+                  
                   </tbody>
               </table>
               <bs-input label="Comment" type="textarea" :maxlength="255" :icon="true" v-model="formData.comment"></bs-input>
@@ -182,7 +174,7 @@
                },
         data () {  return {  title: '',orderNo: '', locationOptions: [],
                              formData: {   ticket_no: '',ticket_type_id: '',status_id:'',QUOTE_ID: '',ORDER_ID: '',
-                                           location_id: '',name: '',  comment: '',  id: ''  ,orderStatus: '', CONTACT_NAME:'', CONTACT_PHONE:'',
+                                           location_id: '',name: '',  comment: '',  id: ''  ,orderStatus: '', 
                                        allocateduseremail:'', manageduseremail:'', tktstatus:'',
                                        }, statusOptions: [], typeOptions: [], allstatus:'',alltypes:'',tkttype:'',
                               cascadeLocationOptions: [],
@@ -368,7 +360,7 @@
                                       user1: {id:'', name:''},
                                       group1: {id:'', name:''}, 
                                       status_id:'', allocateduseremail:'', manageduseremail:'',
-                                      ticket_type_id:'',  CONTACT_PERSON:'', tktstatus:'',alltypes:'',allstatus:'',tkttype:'',
+                                      ticket_type_id:'',   tktstatus:'',alltypes:'',allstatus:'',tkttype:'',
                                     };  
                               this.cascade_state_location = []; this.cascade_state_location1 = [];
                             },
@@ -469,9 +461,7 @@
                     this.formData.ORDER_ID = this.csticketActivityData.data.ORDER_ID;
                     this.formData.comment = this.csticketActivityData.data.comment;
                     this.formData.CUST_NAME = this.csticketActivityData.data.CUST_NAME;
-                    this.formData.CONTACT_PERSON = this.csticketActivityData.data.CONTACT_PERSON;
-                    this.formData.CONTACT_PHONE = this.csticketActivityData.data.CONTACT_PHONE;
-                    this.formData.CONTACT_EMAIL = this.csticketActivityData.data.CONTACT_EMAIL;
+                   
                    
                     this.formData.status_id = this.csticketActivityData.data.STATUS;
                     // this.formData.ticket_type_id = this.csticketActivityData.data.ttype.ticket_type;

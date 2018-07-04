@@ -16,6 +16,7 @@
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4"><bs-input label="Ticket No" type="text"  :rows="1"  :maxlength="255" v-model="formSearchData.ticket_no"></bs-input></div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4"><bs-input label="ORDER_ID" type="text"  :rows="1"  :maxlength="255" v-model="formSearchData.ORDER_ID"></bs-input></div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4"><bs-input label="QUOTE_ID" type="text"  :rows="1"  :maxlength="255" v-model="formSearchData.QUOTE_ID"></bs-input></div>
+                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4"><bs-input label="CUSTOMER" type="text"  :rows="1"  :maxlength="255" v-model="formSearchData.CUST_NAME"></bs-input></div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4"><div><label for="status">Status</label></div>
                                 <Select clearable filterable v-model="formSearchData.ticketStatus"
                                         @on-change="onChangeStatus"
@@ -151,7 +152,7 @@
                                             salesOrderNumber: '', // UDF1
                                             superVisorUpdated: '',  // contact
                                             customerAddress: '',  // address
-                                            users:'', customer: {code: '', name: ''}, 
+                                            users:'', customer: {code: '', name: ''}, CUST_NAME:'',
                                             dateRange: ['',''],dateRangeUpdate: ['',''], 
 
                                             ticket_no:'',ORDER_ID:'',QUOTE_ID:'',ticketStatus:'',
@@ -219,7 +220,7 @@
             resetFormData() 
               {   this.formSearchData =  
                   { salesContact: '', salesOrderNumber: '',   superVisorUpdated: '',
-                    customerAddress: '',   customer: {code: '', name: ''}, users:'',
+                    customerAddress: '',   customer: {code: '', name: ''}, users:'', CUST_NAME:'',
                     dateRange: '',dateRangeUpdate:'', 
                     ticket_no:'',ORDER_ID:'',QUOTE_ID:'',ticketStatus:'',
                     ticketType:'',createdby:'',updatedby:'',assigneduser:'',orderLocation:'',manageduser:'',
