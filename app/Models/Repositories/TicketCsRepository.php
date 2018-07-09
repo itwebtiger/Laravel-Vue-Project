@@ -52,7 +52,7 @@ class TicketCsRepository extends BaseRepository
        // $ticketcs->user_id = 1;  
     
         $ticketcs->save();   
-        Mail::raw( $request , function($message) use ($request) {
+      /*  Mail::raw( $request , function($message) use ($request) {
             $message->from('OMS@dowell.com.au', 'OMS');
             $message->to($request->input('allocateduseremail'));
             $message->cc($request->input('manageduseremail'));
@@ -68,7 +68,7 @@ class TicketCsRepository extends BaseRepository
            
             //$message->setBody( '<html><h1>5% off its awesome</h1><p>Go get it now !</p></html>', 'text/html' );
             //$message->addPart("5% off its awesome\n\nGo get it now!", 'text/plain');
-        });
+        }); */
         return $ticketcs;
     }
     public function save($request)  //edit ticket
@@ -95,7 +95,7 @@ class TicketCsRepository extends BaseRepository
         
     
         $ticketcs->save();
-        Mail::raw($request, function ($message) use ($request) {
+     /*   Mail::raw($request, function ($message) use ($request) {
             $message->from('OMS@dowell.com.au', 'OMS');
             $message->to($request->input('allocateduseremail'));
             $message->cc($request->input('manageduseremail'));
@@ -109,7 +109,7 @@ class TicketCsRepository extends BaseRepository
             $message->subject("OMS: Ticket No-$tktno updated , Type:$tkttype , Status:$tktstatus");
             $message->setBody("Ticket No: $tktno has been updated\n\nTicket Type: $tkttype\n\nSTATUS:$tktstatus\n\nComments:$comments \n\nPlease access server (http://10.102.108.10/) for further actions \n\nIts an automatically generated email, please do not reply.");
             
-        });
+        }); */
         return $ticketcs;
     }
 
